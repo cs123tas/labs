@@ -12,7 +12,7 @@ Settings settings;
 void Settings::loadSettingsOrDefaults() {
     // Set the default values below
     QSettings s("CS123", "Lab00");
-    color = s.value("color", COLOR_RED).toInt();
+    color = s.value("color", COLOR_GREEN).toInt();
 }
 
 void Settings::saveSettings() {
