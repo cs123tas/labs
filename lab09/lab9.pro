@@ -2,7 +2,7 @@
 # Project created by QtCreator 2010-08-22T14:12:19
 # -------------------------------------------------
 QT += opengl xml
-TARGET = final
+TARGET = lab9 
 TEMPLATE = app
 
 QMAKE_CXXFLAGS += -std=c++14
