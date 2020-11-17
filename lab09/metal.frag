@@ -2,7 +2,7 @@
 
 in vec3 vertex;                 // The position of the vertex, in camera space
 in vec3 vertexToLight;          // Vector from the vertex to the light
-in vec3 vertexToEye;            // Vector from the vertex to the eye
+in vec3 vertexToCamera;            // Vector from the vertex to the eye
 in vec3 eyeNormal;		// Normal of the vertex, in camera space
 
 uniform samplerCube envMap;	// The cube map containing the environment to reflect
