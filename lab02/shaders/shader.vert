@@ -9,8 +9,11 @@ uniform mat4 perspective;
 void main() {
     gl_Position = vec4(position, 1.0);
     // TODO: Add 0.5 to gl_Position.y (Task 2)
+    //gl_Position.y += .5;
 
     // TODO: Transform gl_Position using the model matrix uniform (Task 3)
-
+    //gl_Position = model*gl_Position;
     // TODO: Transform the position using all three matrix uniforms. (Task 4)
+    gl_Position = perspective*view*model*gl_Position;
+    //gl_Position = perspective*gl_Position;
 }

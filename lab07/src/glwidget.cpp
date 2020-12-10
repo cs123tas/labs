@@ -63,7 +63,17 @@ void GLWidget::initializeGL() {
     // TODO: [Task 6] Fill in the positions and UV coordinates to draw a fullscreen quad
     // We've already set the vertex attributes for you, so be sure to follow those specifications
     // (triangle strip, 4 vertices, position followed by UVs)
-    std::vector<GLfloat> quadData;
+
+    std::vector<GLfloat> quadData ={
+        -1,1,0,0, 1,
+        -1,-1,0, 0,0,
+        1,1,0, 1,1,
+        1,-1,0,1,0
+
+
+//        1,1,0,1,1,
+//        -1,1,0,1,-1
+    };
     m_quad = std::make_unique<OpenGLShape>();
     m_quad->setVertexData(&quadData[0], quadData.size(), VBO::GEOMETRY_LAYOUT::LAYOUT_TRIANGLE_STRIP, 4);
     m_quad->setAttribute(ShaderAttrib::POSITION, 3, 0, VBOAttribMarker::DATA_TYPE::FLOAT, false);
@@ -74,7 +84,19 @@ void GLWidget::initializeGL() {
     // It doesn't need any data associated with it, so we don't have to make a full VAO instance
     glGenVertexArrays(1, &m_particlesVAO);
     // TODO [Task 13] Create m_particlesFBO1 and 2 with std::make_shared
-
+    m_particlesFBO1 = std::make_unique<FBO>(2,FBO::DEPTH_STENCIL_ATTACHMENT::NONE,m_numParticles,1,TextureParameters::WRAP_METHOD::CLAMP_TO_EDGE,TextureParameters
+                                            ::FILTER_METHOD::NEAREST,GL_FLOAT);
+    m_particlesFBO2 = std::make_unique<FBO>(2,FBO::DEPTH_STENCIL_ATTACHMENT::NONE,m_numParticles,1,TextureParameters::WRAP_METHOD::CLAMP_TO_EDGE,TextureParameters
+                                            ::FILTER_METHOD::NEAREST,GL_FLOAT);
+    GLint firstPassloc = glGetUniformLocation(m_particleUpdateProgram,"firstPass");
+    GLint numloc = glGetUniformLocation(m_particleUpdateProgram,"numParticles");
+    GLint posloc = glGetUniformLocation(m_particleUpdateProgram,"prevPos");
+    GLint velloc = glGetUniformLocation(m_particleUpdateProgram,"prevVel");
+    glUniform1f(firstPassloc,m_firstPass);
+    glUniform1i(numloc,m_numParticles);
+    glUniform1i(posloc,0);
+    glUniform1i(velloc,1);
+    m_quad->draw();
     // Print the max FBO dimension.
     GLint maxRenderBufferSize;
     glGetIntegerv(GL_MAX_RENDERBUFFER_SIZE_EXT, &maxRenderBufferSize);
@@ -95,11 +117,43 @@ void GLWidget::paintGL() {
 }
 
 void GLWidget::drawBlur() {
+    m_blurFBO1->bind();
     // TODO: [Task 1] Do drawing here!
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    glUseProgram(m_phongProgram);
+    GLint uniformLocView = glGetUniformLocation(m_phongProgram, "view");
+    GLint uniformLocProj = glGetUniformLocation(m_phongProgram, "projection");
+    GLint uniformLoc = glGetUniformLocation(m_phongProgram, "model");
+   glUniformMatrix4fv(uniformLocView,1,GL_FALSE,glm::value_ptr(m_view));
+   glUniformMatrix4fv(uniformLocProj,1,GL_FALSE,glm::value_ptr(m_projection));
+   glm::mat4x4 id =glm::translate(glm::vec3(0.0f,1.2f,0.0f));
+   glUniformMatrix4fv(uniformLoc,1,GL_FALSE,glm::value_ptr(id));
+
     //       [Task 1.5] Call glViewport so that the viewport is the right size
+   glViewport(0,0,m_width,m_height);
+   m_sphere->draw();
+
     //       [Task 5b] Bind m_blurFBO1
     //       [Task 8] Bind m_blurFBO1's color texture
+   m_blurFBO1->unbind();
+
     //       [Task 7] Unbind m_blurFBO1 and render a full screen quad
+   //glUseProgram(0);
+
+
+
+   glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+   glViewport(0,0,m_width,m_height);
+   m_blurFBO2->bind();
+   glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+   m_blurFBO1->getColorAttachment(0).bind();
+   //glUseProgram(m_textureProgram);
+   glUseProgram(m_horizontalBlurProgram);
+   m_quad->draw();
+   m_blurFBO2->unbind();
+   m_blurFBO2->getColorAttachment(0).bind();
+   glUseProgram(m_verticalBlurProgram);
+   m_quad->draw();
     //       [Task 11] Bind m_blurFBO2
 
 }
@@ -110,9 +164,31 @@ void GLWidget::drawParticles() {
     float firstPass = m_firstPass ? 1.0f : 0.0f;
 
     // TODO [Task 14] Move the particles from prevFBO to nextFBO while updating them
-
+    nextFBO->bind();
+    glUseProgram(m_particleUpdateProgram);
+    glActiveTexture(GL_TEXTURE0);
+    prevFBO->getColorAttachment(0).bind();
+    glActiveTexture(GL_TEXTURE1);
+    prevFBO->getColorAttachment(1).bind();
     // TODO [Task 17] Draw the particles from nextFBO
-
+    nextFBO->unbind();
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    glUseProgram(m_particleDrawProgram);
+    setParticleViewport();
+    glActiveTexture(GL_TEXTURE0);
+    nextFBO->getColorAttachment(0).bind();
+    glActiveTexture(GL_TEXTURE1);
+    nextFBO->getColorAttachment(1).bind();
+    GLint uniformLocPos = glGetUniformLocation(m_particleDrawProgram, "prevPos");
+    glUniform1i(uniformLocPos,0);
+    GLint uniformLocVel = glGetUniformLocation(m_particleDrawProgram, "prevVel");
+    glUniform1i(uniformLocVel,1);
+    GLint uniformLocNum = glGetUniformLocation(m_particleDrawProgram, "numParticles");
+    glUniform1i(uniformLocNum,m_numParticles);
+    glBindVertexArray(m_particlesVAO);
+    glDrawArrays(GL_TRIANGLES,uniformLocNum,3*m_numParticles);
+    glBindVertexArray(0);
+    glActiveTexture(GL_TEXTURE0);
     m_firstPass = false;
     m_evenPass = !m_evenPass;
 }
@@ -124,7 +200,10 @@ void GLWidget::resizeGL(int w, int h) {
     m_height = h;
 
     // TODO: [Task 5] Initialize FBOs here, with dimensions m_width and m_height.
+   m_blurFBO1 = std::make_unique<FBO>(1,FBO::DEPTH_STENCIL_ATTACHMENT::DEPTH_ONLY,m_width,m_height);
+
     //       [Task 12] Pass in TextureParameters::WRAP_METHOD::CLAMP_TO_EDGE as the last parameter
+    m_blurFBO2 = std::make_unique<FBO>(1,FBO::DEPTH_STENCIL_ATTACHMENT::NONE,m_width,m_height);
 
     rebuildMatrices();
 }

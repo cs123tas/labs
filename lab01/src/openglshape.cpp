@@ -57,5 +57,10 @@ void OpenGLShape::buildVAO() {
 void OpenGLShape::draw() {
     if (m_VAO) {
         // TODO [Task 5]
+        m_VAO->bind();
+        m_VAO->draw();
+        m_VAO->unbind();
+
+
     }
 }

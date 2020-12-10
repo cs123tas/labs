@@ -40,6 +40,7 @@ SOURCES += \
     lib/RGBA.cpp
 
 HEADERS += \
+    filter/FilterGray_copy.h \
     ui/Canvas2D.h \
     ui/SupportCanvas2D.h \
     ui/Settings.h \

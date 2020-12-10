@@ -6,6 +6,7 @@
 #include <QWheelEvent>
 #include <iostream>
 
+
 #define PI 3.14159265f
 
 GLWidget::GLWidget(QGLFormat format, QWidget *parent)
@@ -13,7 +14,9 @@ GLWidget::GLWidget(QGLFormat format, QWidget *parent)
 {}
 
 GLWidget::~GLWidget()
-{}
+{
+    glDeleteTextures(1,&m_program);
+}
 
 void GLWidget::initializeGL() {
     ResourceLoader::initializeGlew();
@@ -23,12 +26,28 @@ void GLWidget::initializeGL() {
     glEnable(GL_CULL_FACE);
 
     // Set the color to set the screen when the color buffer is cleared.
-    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+    glClearColor((float)130.0/255.0, (float)206/255.0, (float)255.0/255.0, 0.0f);
 
-    m_program = ResourceLoader::createShaderProgram(":/shaders/shader.vert", ":/shaders/shader.frag");
-    m_terrain.init();
-
+    m_program = ResourceLoader::createShaderProgram(":/shaders/terrain.vert", ":/shaders/terrain.frag");
+   // m_textureprogramID = ResourceLoader::createShaderProgram(":/shaders/skybox.vert", ":/shaders/skybox.frag");
+    m_terrain.init(m_program);
+    initializeGLFragmentShaders();
     rebuildMatrices();
+}
+void GLWidget::initializeGLFragmentShaders() {
+
+    QImage image(":/shaders/cliff.jpg");
+
+    glGenTextures(1,&m_textureID);
+    glBindTexture(GL_TEXTURE_2D,m_textureID);
+//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MODULATE);
+//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MODULATE);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+//    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
+//    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
+//    glTexEnvi( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
+    glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,image.width(),image.height(),0,GL_RGBA,GL_UNSIGNED_BYTE,image.bits());
 }
 
 void GLWidget::paintGL() {
@@ -41,11 +60,15 @@ void GLWidget::paintGL() {
     glUniformMatrix4fv(glGetUniformLocation(m_program, "model"), 1, GL_FALSE, glm::value_ptr(m_model));
     glUniformMatrix4fv(glGetUniformLocation(m_program, "view"), 1, GL_FALSE, glm::value_ptr(m_view));
     glUniformMatrix4fv(glGetUniformLocation(m_program, "projection"), 1, GL_FALSE, glm::value_ptr(m_projection));
-
+    glBindTexture(m_textureID,GL_TEXTURE_2D);
     // Draw terrain.
     m_terrain.draw();
 
     // Unbind shader program.
+    //glUseProgram(0);
+//    glUseProgram(m_textureprogramID);
+//    m_terrain.draw();
+
     glUseProgram(0);
 }
 

@@ -61,3 +61,7 @@ OTHER_FILES += \
 
 RESOURCES += \
     shaders/shaders.qrc
+
+DISTFILES += \
+    ostrich.jpg \
+    src/woodTexture.jpg
