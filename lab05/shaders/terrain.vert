@@ -4,13 +4,13 @@ layout(location = 0) in vec3 OS_position;
 layout(location = 1) in vec3 OS_normal;
 layout(location = 2) in vec3 OS_color;
 layout(location = 5) in vec2 OS_texture;
-
 //layout(location = 0) in vec3 OS_position;
 //layout(location = 5) in vec2 OS_texture;
 
 //out vec2 uv;
 
 uniform mat4 model, view, projection;
+
 
 out vec3 WS_position; // world-space position
 out vec3 WS_normal;   // world-space normal
@@ -49,6 +49,9 @@ void main() {
     isColor=1;
     if(OS_position.y<.9&&OS_position.y>.25){
         isColor = 0;
+    }
+    if(OS_position.y==.25){
+        isColor = 2;
     }
 //    if(OS_position.y==.5){
 //        isColor = 1;

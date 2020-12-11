@@ -36,7 +36,7 @@ private:
     void rebuildMatrices();
 
     /** ID for the shader program. */
-    GLuint m_program,m_textureID,m_textureprogramID;
+    GLuint m_program,m_textureID,m_textureprogramID,m_texture2;
 
     Terrain m_terrain;
 

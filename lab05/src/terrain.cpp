@@ -60,8 +60,8 @@ glm::vec3 Terrain::getPosition(int row, int col) {
         scale = scale/2.0;
     }
     //hi
-    //if(col>50 &&row>50){
-        if(col>150 &&row>150){
+    if(col>50 &&row>50){
+       // if(col>150 &&row>150){
         position.y=.25;
        // position.y = .45;
        //     position.y = sqrt(position.y)/3;
@@ -69,6 +69,7 @@ glm::vec3 Terrain::getPosition(int row, int col) {
     if(col>0 &&col>40 &&row<20){
        position.y=position.y/3;
     }
+
     return position;
 }
 
@@ -122,7 +123,16 @@ glm::vec3 Terrain::getNormal(int row, int col) {
 //    return glm::vec3(0, 1, 0);
 }
 
-
+struct points{
+    points(float _x, float _y, float _z){
+        x = _x;
+        y = _y;
+        z = _z;
+    }
+    float x;
+    float y;
+    float z;
+};
 
 struct terrainColor {
     terrainColor(float _height, glm::vec3 _color) {
@@ -173,15 +183,23 @@ glm::vec3 Terrain::generate_biome(glm::vec3 position, int row, int col) {
 //        color = glm::vec3(1/255.0, 68/255.0, 33/255.0);//green
 
 //    }
-    //if(col>50 &&row>50){
-    if(col>150 &&row>150){
+    if(col>50 &&row>50){
+    //if(col>150 &&row>150){
 
        color = glm::vec3(132/255.0, 192/255.0, 17/255.0);//green
 }
     //colors.push_back(color);
     return color;
 }
+std::vector<points> setPoints(points _p, int ind){
+    std::vector<points> ps;
+    ps[ind] = _p;
+    return ps;
+}
+std::vector<float> Terrain::calculateVertices(std::vector<float> data, int row, int col, int rowend){
 
+   // return data;
+}
 /**
  * Initializes the terrain by storing positions and normals in a vertex buffer.
  */
@@ -192,15 +210,13 @@ void Terrain::init(GLuint m_program) {
     std::vector<glm::vec3> colors;
 
     // Initializes a grid of vertices using triangle strips.
-    int numVertices = (m_numRows - 1) * (2 * m_numCols + 2);
-
-//    std::vector<float> data(9 * numVertices);
+    int numVertices = (m_numRows - 1) * (2 *m_numCols + 2);
+    std::vector<points> ps;
     std::vector<float> data(18 * numVertices);
+    //data = calculateVertices(data,0,m_numCols-1,(m_numRows - 1));
     int index = 0;
-    int offset = 0;
-   // for(int i =0; i< 3; i++){
-    for (int row = 0; row < m_numRows - 1; row++) {
-        for (int col = m_numCols - 1; col >= 0; col--) {
+    for (int row =0 ; row < m_numRows - 1; row++) {
+        for (int col = m_numCols-1; col >= 0; col--) {
 
             data[index++] = getPosition(row, col).x;
             data[index++] = getPosition(row, col).y;
@@ -212,8 +228,7 @@ void Terrain::init(GLuint m_program) {
             data[index++] = generate_biome(getPosition(row, col), row, col).x;
             data[index++] = generate_biome(getPosition(row, col), row, col).y;
             data[index++] = generate_biome(getPosition(row, col), row, col).z;
-//            data[index++] =0.0;
-//            data[index++] =0.0;
+
             data[index++] = getPosition(row, col).x;
             data[index++] = getPosition(row, col).y;
             data[index++] = getPosition(row + 1, col).x;
@@ -222,14 +237,21 @@ void Terrain::init(GLuint m_program) {
             data[index++] = getNormal  (row + 1, col).x;
             data[index++] = getNormal  (row + 1, col).y;
             data[index++] = getNormal  (row + 1, col).z;
-//            data[index++] =0.0;
-//            data[index++] =1.0;
+
             data[index++] = generate_biome(getPosition(row+1, col),row + 1, col).x;
             data[index++] = generate_biome(getPosition(row+1, col),row + 1, col).y;
             data[index++] = generate_biome(getPosition(row+1, col),row + 1, col).z;
             data[index++] = getPosition(row + 1, col).x;
             data[index++] = getPosition(row + 1, col).y;
 
+            if(row == m_numRows-1 && col ==0){
+                points p(getPosition(row, col).x,getPosition(row, col).y,getPosition(row, col).z);
+                ps.push_back(p);
+            }
+            if(row == m_numRows-1 && col ==m_numCols-1){
+                points p(getPosition(row, col).x,getPosition(row, col).y,getPosition(row, col).z);
+                ps.push_back(p);
+            }
         }
         data[index++] = getPosition(row + 1, 0).x;
         data[index++] = getPosition(row + 1, 0).y;
@@ -240,8 +262,7 @@ void Terrain::init(GLuint m_program) {
         data[index++] = generate_biome(getPosition(row+1, 0),row + 1, 0).x;
         data[index++] = generate_biome(getPosition(row+1, 0),row + 1, 0).y;
         data[index++] = generate_biome(getPosition(row+1, 0),row + 1, 0).z;
-//        data[index++] =1.0;
-//        data[index++] =1.0;
+
         data[index++] = getPosition(row + 1, 0).x;
         data[index++] = getPosition(row + 1, 0).y;
         data[index++] = getPosition(row + 1, m_numCols - 1).x;
@@ -250,8 +271,7 @@ void Terrain::init(GLuint m_program) {
         data[index++] = getNormal  (row + 1, m_numCols - 1).x;
         data[index++] = getNormal  (row + 1, m_numCols - 1).y;
         data[index++] = getNormal  (row + 1, m_numCols - 1).z;
-//        data[index++] =1.0;
-//        data[index++] =0.0;
+
         data[index++] = generate_biome(getPosition(row+1, m_numCols - 1),row + 1, m_numCols - 1).x;
         data[index++] = generate_biome(getPosition(row+1, m_numCols - 1),row + 1, m_numCols - 1).y;
         data[index++] = generate_biome(getPosition(row+1, m_numCols - 1),row + 1, m_numCols - 1).z;
@@ -260,9 +280,7 @@ void Terrain::init(GLuint m_program) {
 
 
     }
- //   offset += 100;
-
- //}
+   // calculateVertices(data,0,m_numCols-1),(m_numRows - 1)/2;
 
 
     // Initialize OpenGLShape.
@@ -276,30 +294,13 @@ void Terrain::init(GLuint m_program) {
     m_shape->buildVAO();
 
     // Smart pointer!
-//    m_square = std::make_unique<OpenGLShape>();
-
-//    static constexpr int kFloatsPerVertex = 8;
-//    std::vector<float> coordinates = {
-//        -0.5f,  0.5f,  0.0f, 1, 0, 0, 0, 0,
-//        -0.5f, -0.5f,  0.0f, 0, 1, 1, 0, 1,
-//         0.5f,  0.5f,  0.0f, 1, 0, 1, 1, 0,
-//         0.5f, -0.5f,  0.0f, 1, 1, 0, 1, 1
-//    };
-//    m_square->setVertexData(coordinates.data(),
-//                            coordinates.size(),
-//                            VBO::GEOMETRY_LAYOUT::LAYOUT_TRIANGLE_STRIP,
-//                            coordinates.size() / kFloatsPerVertex);
-
 
     // TODO: Interleave positions and colors in the array used to intialize m_square (Task 10)
 
     // TODO: Don't forget to add the color attribute similar to how you did for the position (Task 10)
 
     // TODO: Interleave UV-coordinates along with positions and colors in your VBO (Task 14)
-//    m_square->setAttribute(ShaderAttrib::POSITION, 3, 0, VBOAttribMarker::DATA_TYPE::FLOAT, false);
-//    m_square->setAttribute(ShaderAttrib::COLOR, 3, 12, VBOAttribMarker::DATA_TYPE::FLOAT, false);
-//    m_square->setAttribute(ShaderAttrib::TEXCOORD0, 2, 24, VBOAttribMarker::DATA_TYPE::FLOAT, false);
-//    m_square->buildVAO();
+
 }
 
 
@@ -309,5 +310,5 @@ void Terrain::init(GLuint m_program) {
 void Terrain::draw()
 {
     m_shape->draw();
-   // m_square->draw();
+
 }

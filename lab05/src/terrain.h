@@ -22,6 +22,8 @@ private:
     glm::vec3 getNormal(int row, int col);
     float getNoiseValue(int row, int col, float octave,float frequency, float persistence);
     glm::vec3 generate_biome(glm::vec3 position, int row, int col);
+    std::vector<float> calculateVertices(std::vector<float> data, int row, int col,int rowend);
+
     std::unique_ptr<OpenGLShape> m_shape,m_square;
     const float m_numRows, m_numCols;
 };
