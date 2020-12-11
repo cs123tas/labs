@@ -20,7 +20,10 @@ void TextureParameters::applyTo(const Texture2D &texture) {
     // TODO [Task 2] call glTexParameteri to set:
     // - the min filter and mag filter to filterEnum
     // - the s wrap and t wrap to wrapEnum
-
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,filterEnum);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,filterEnum);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,wrapEnum);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,wrapEnum);
     texture.unbind();
 }
 

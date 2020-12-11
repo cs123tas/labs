@@ -1,6 +1,12 @@
 <RCC>
     <qresource prefix="/shaders">
-        <file>shader.frag</file>
-        <file>shader.vert</file>
+        <file>terrain.frag</file>
+        <file>terrain.vert</file>
+        <file>skybox.frag</file>
+        <file>skybox.vert</file>
+        <file>wood4.jpg</file>
+        <file>ostrich.jpg</file>
+        <file>cliff.jpg</file>
+        <file>Snow-Mountain-Texture.jpg</file>
     </qresource>
 </RCC>

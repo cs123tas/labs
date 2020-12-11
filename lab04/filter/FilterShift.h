@@ -14,6 +14,7 @@ public:
     virtual ~FilterShift() override;
 
     virtual void apply(Canvas2D *canvas) override;
+    std::vector<float> makeKernel(ShiftDirection direction);
 
 private:
     ShiftDirection m_shiftDir;

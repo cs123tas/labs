@@ -13,8 +13,17 @@ VAO::VAO(const VBO &vbo, int numberOfVerticesToRender) :
     m_triangleLayout(vbo.triangleLayout())
 {
     // TODO [Task 3]
+    glGenVertexArrays(1, &m_handle);
+
+
 
     // TODO [Task 4]
+    bind();
+    vbo.bindAndEnable();
+    unbind();
+    vbo.unbind();
+
+
 }
 
 VAO::VAO(const VBO &vbo, const IBO &ibo, int numberOfVerticesToRender) :
@@ -30,6 +39,7 @@ VAO::VAO(const VBO &vbo, const IBO &ibo, int numberOfVerticesToRender) :
     // about them if you're curious!
     // This constructor should be almost identical to the one above,
     // just also bind the IBO after binding the vbo (and unbind it)
+
 }
 
 VAO::VAO(VAO &&that) :
@@ -58,6 +68,7 @@ VAO& VAO::operator=(VAO &&that) {
 VAO::~VAO()
 {
     // TODO [Task 6]
+    glDeleteVertexArrays(1,&m_handle);
 }
 
 void VAO::draw() {
@@ -68,6 +79,8 @@ void VAO::draw(int count) {
     switch(m_drawMethod) {
         case VAO::DRAW_ARRAYS:
             // TODO [Task 5]
+            //glBindBuffer(GL_ARRAY_BUFFER, m_handle);
+            glDrawArrays(m_triangleLayout, 0, count);
             break;
         case VAO::DRAW_INDEXED:
             // TODO [OPTIONAL]
@@ -78,10 +91,12 @@ void VAO::draw(int count) {
 
 void VAO::bind() {
     // TODO [Task 4]
+    glBindVertexArray(m_handle);
 }
 
 void VAO::unbind() {
     // TODO [Task 4]
+    glBindVertexArray(0);
 }
 
 }}

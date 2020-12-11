@@ -48,24 +48,31 @@ void GLWidget::initializeGL() {
 }
 
 void GLWidget::paintGL() {
+    ErrorChecker::printGLErrors("ignore");
     // Clear the color and depth buffers.
-    glClear(GL_COLOR | GL_DEPTH_BUFFER_BIT);
+    glClear(GL_DEPTH_BUFFER_BIT);
+    //glClear(GL_COLOR | GL_DEPTH_BUFFER_BIT);
+    ErrorChecker::printGLErrors("line 52");
 
-    glm::mat4 model(1.f);
-
+    glm::mat4 model(1.0f);
+    ErrorChecker::printGLErrors("model");
     glUseProgram(m_program);
-
+    ErrorChecker::printGLErrors("m_program");
     // Sets projection and view matrix uniforms.
     glUniformMatrix4fv(glGetUniformLocation(m_program, "projection"), 1, GL_FALSE, glm::value_ptr(m_projection));
+    ErrorChecker::printGLErrors("projection");
     glUniformMatrix4fv(glGetUniformLocation(m_program, "view"), 1, GL_FALSE, glm::value_ptr(m_view));
-
+    ErrorChecker::printGLErrors("view");
     // Sets uniforms that are controlled by the UI.
     glUniform1f(glGetUniformLocation(m_program, "shininess"), settings.shininess);
+    ErrorChecker::printGLErrors("shininess");
     glUniform1f(glGetUniformLocation(m_program, "lightIntensity"), settings.lightIntensity);
+    ErrorChecker::printGLErrors("lightintensity");
     glUniform3f(glGetUniformLocation(m_program, "lightColor"),
                 settings.lightColor.redF(),
                 settings.lightColor.greenF(),
                 settings.lightColor.blueF());
+    ErrorChecker::printGLErrors("lightcolor");
     glUniform1f(glGetUniformLocation(m_program, "attQuadratic"), settings.attQuadratic);
     glUniform1f(glGetUniformLocation(m_program, "attLinear"), settings.attLinear);
     glUniform1f(glGetUniformLocation(m_program, "attConstant"), settings.attConstant);
@@ -74,16 +81,22 @@ void GLWidget::paintGL() {
     glUniform1f(glGetUniformLocation(m_program, "specularIntensity"), settings.specularIntensity);
 
     glUseProgram(0);
-
+    ErrorChecker::printGLErrors("useprogram");
     // Draws a sphere at the origin.
-    model = glm::mat4(1.f);
+    model = glm::mat4(1.0f);
+
     glUniformMatrix4fv(glGetUniformLocation(m_program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+    ErrorChecker::printGLErrors("model2.0");
     glUniform3f(glGetUniformLocation(m_program, "color"),
                 settings.sphereMColor.redF(),
                 settings.sphereMColor.greenF(),
                 settings.sphereMColor.blueF());
+    ErrorChecker::printGLErrors("color");
     rebuildMatrices();
+    ErrorChecker::printGLErrors("rebuild");
     m_sphere->draw();
+
+    //ErrorChecker::printGLErrors("line 55");
 
     // TODO: Draw two more spheres. (Task 2)
 

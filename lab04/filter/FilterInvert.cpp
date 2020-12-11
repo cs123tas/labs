@@ -17,6 +17,9 @@ void FilterInvert::apply(Canvas2D *canvas) {
 
         for (int c = 0; c < canvas->width(); c++) {
             // TODO: Task 7 Update the color with its inversion
+            current_pixel->r=255-current_pixel->r;
+            current_pixel->b=255-current_pixel->b;
+            current_pixel->g=255-current_pixel->g;
 
 
             // CONTINUED: Task 8 [Optional]

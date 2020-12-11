@@ -30,12 +30,13 @@ protected:
     void mousePressEvent(QMouseEvent *e);
     void mouseMoveEvent(QMouseEvent *e);
     void wheelEvent(QWheelEvent *e);
+    void initializeGLFragmentShaders();
 
 private:
     void rebuildMatrices();
 
     /** ID for the shader program. */
-    GLuint m_program;
+    GLuint m_program,m_textureID,m_textureprogramID,m_texture2;
 
     Terrain m_terrain;
 

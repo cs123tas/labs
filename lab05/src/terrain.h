@@ -13,14 +13,18 @@ class Terrain {
 public:
     Terrain();
 
-    void init();
+    void init(GLuint m_program);
     void draw();
 
 private:
     float randValue(int row, int col);
     glm::vec3 getPosition(int row, int col);
     glm::vec3 getNormal(int row, int col);
-    std::unique_ptr<OpenGLShape> m_shape;
+    float getNoiseValue(int row, int col, float octave,float frequency, float persistence);
+    glm::vec3 generate_biome(glm::vec3 position, int row, int col);
+    std::vector<float> calculateVertices(std::vector<float> data, int row, int col,int rowend);
+
+    std::unique_ptr<OpenGLShape> m_shape,m_square;
     const float m_numRows, m_numCols;
 };
 

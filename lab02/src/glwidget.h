@@ -63,6 +63,9 @@ private:
 
     /** Incremented on every call to paintGL. */
     int m_increment;
+
+    /** Changing angle */
+    float m_cameraangle;
 };
 
 #endif // GLWIDGET_H
