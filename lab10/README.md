@@ -1,391 +1,290 @@
-<div>
 
-[]{.c17 .c45 .c21}
+# Lab 8: Particles
 
-</div>
+![](images/image13.png)
 
-[Lab 8 -- Particles]{.c11 .c43}
+## Prologue
 
-[]{.c1}
+At this point, you've learned the basic foundations of OpenGL and
+Maya! In this lab you will create and shade your own particle system through one of two options. By using your knowledge of...
 
-[![](images/image13.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 411.79px; height: 286.50px;"}
+1. Framebuffers
+2. Maya
 
-# []{.c3} {#h.mvvjbcafmpyj .c33}
-
-# [Prologue]{.c11 .c47} {#h.3h0beh2b3s2b .c41}
-
-[In this lab you will implement your own particle system through one of
-2 options. 1) by using your knowledge of framebuffers from the previous
-lab or 2) by using your knowledge of Maya to create and shade a particle
-system.]{.c1}
-
-[]{.c1}
-
-[Note: At this point, you've learned the basic foundations of OpenGL and
-Maya! ]{.c11 .c24}[Of the last three labs, which will be helpful for
+Note: Of the last three labs, which will be helpful for
 your final project, you will only need to complete two by November 30th
-(but you can choose to do 3). ]{.c11 .c24}[You can get them checked off
-at any point between now and November 30th. ]{.c11 .c24}
+(but you can choose to do 3). You can get them checked off
+at any point between now and November 30th.
 
-# [Intro]{.c3} {#h.y5pgntbatrit .c41}
+## Intro
 
-[Particles are often used in computer graphics because they're easy to
+Particles are often used in computer graphics because they're easy to
 implement, look great, and can give you lots of cool effects like fire
 and smoke. Particles can be implemented in many ways. In this lab we
-will explore how to implement them using either ]{.c11}[framebuffers
-]{.c29}[and/or]{.c11}[ Maya's ]{.c29}[features. You will only need to
+will explore how to implement them using either framebuffers or Maya's features. You will only need to
 complete the FBO Version or the Maya version of this lab, but feel free
-to do both!]{.c1}
+to do both if you desire!
 
-[]{.c1}
+# Particles: FBO Version
 
-[Particles -- FBO Version]{.c11 .c43}
+## Introduction
 
-[A common strategy to implement particle emission, is to keep a list of
-particle positions and velocities on the CPU, update them ]{.c11}[one at
-a time]{.c29}[, and then send their positions to the GPU to draw them.
-But we know better. ]{.c11}
+A common strategy to implement particle emission, is to keep a list of
+particle positions and velocities on the CPU, update them one at
+a time, and then send their positions to the GPU to draw them.
+But we know better.
 
-[]{.c1}
-
-[Imagine a texture with RGBA float (positive and negative) texels. What
+Imagine a texture with RGBA float (positive and negative) texels. What
 if we treated each texel as a particle? More precisely, each texel
 represents one particle's XYZ position and its lifetime in seconds. In a
 second texture, we can have the matching RGBA texel store XYZ velocity
 and age in seconds. If we run a shader on an FBO with these two textures
-as color attachments, we can update each particle in parallel!]{.c1}
+as color attachments, we can update each particle in parallel!
 
-[ ]{.c1}
+We will tackle this in a few steps:
 
-[We will tackle this in a few steps:]{.c1}
-
--   [The first update initializes the particles' positions and
-    velocities.]{.c1}
--   [Subsequent passes update the positions and velocities or reset them
+-   The first update initializes the particles' positions and
+    velocities.
+-   Subsequent passes update the positions and velocities or reset them
     if the particle has died (its age is greater than its
-    lifetime).]{.c1}
--   [The first draw pass takes the information in one FBO, updates each
-    pixel, and places the new information in the other FBO.  ]{.c1}
--   [The second draw pass draws one triangle for each particle and, in
+    lifetime).
+-   The first draw pass takes the information in one FBO, updates each
+    pixel, and places the new information in the other FBO.
+-   The second draw pass draws one triangle for each particle and, in
     the shader, moves the triangles to the position stored in the
-    texture.]{.c1}
+    texture.
+    
+## Getting Started
 
-[ ]{.c1}
-
-# [Getting Started]{.c3} {#h.kzd5u76bpobv .c41}
-
-[The support code is the same as lab7 and this lab builds off of that
+The support code is the same as lab7 and this lab builds off of that
 code. Be sure to finish lab7 before starting lab8. The tasks start at 13
-for continuity with inline comments. Open up glwidget.cpp to get
-started.]{.c1}
+for continuity with inline comments. Open up `glwidget.cpp` to get
+started.
 
-[ ]{.c1}
-
-[Note that there is also a demo version of the lab that can be run by
-inputting ]{.c11}[/course/cs1230/bin/cs1230_lab07_demo]{.c11 .c12}[ into
+Note that there is also a demo version of the lab that can be run by
+inputting `/course/cs1230/bin/cs1230_lab07_demo` into
 your terminal on the department machine through FastX3. Be sure to
-toggle the "Particles" radio button.]{.c1}
+toggle the "Particles" radio button.
 
-[ ]{.c1}
+## Particle Storm Clouds Brewing
 
-[Particle Storm Clouds Brewing]{.c3}
-
-[As with most labs, there is a bit of an overhead to getting something
+As with most labs, there is a bit of an overhead to getting something
 to show up on screen so let's get that set up. Make sure to go through
-each task carefully.]{.c1}
+each task carefully.
 
-[ ]{.c1}
+### Task 13:
 
-### [Task 13:]{.c29 .c35 .c52} {#h.iwnvbkle6ymq .c4 .c53}
-
-[First, we are going to make the FBO member variables. Recall we are
+First, we are going to make the FBO member variables. Recall we are
 using one for positions and one for velocities so we will need to make
-two different FBOs. Let's start with initializeGL(), and initialize
-m_particlesFBO1 and m_particlesFBO2 using
-std::make_shared\<FBO\>(\...).]{.c1}
+two different FBOs. Let's start with `initializeGL()`, and initialize
+`m_particlesFBO1` and `m_particlesFBO2` using
+`std::make_shared<FBO>(...)`
 
--   [They need 2 color attachments (position and velocity) but do not
+-   They need 2 color attachments (position and velocity) but do not
     need depth attachments since it doesn't matter for the purposes of
-    this lab.]{.c1}
--   [For width and height, pass in m_numParticles and 1.]{.c1}
--   [For wrap method, filter method, and storage type we will use
-    TextureParameters::WRAP_METHOD::CLAMP_TO_EDGE,
-    TextureParameters::FILTER_METHOD::NEAREST, and GL_FLOAT.]{.c1}
+    this lab.
+-   For width and height, pass in `m_numParticles` and `1`.
+-   For wrap method, filter method, and storage type we will use
+    `TextureParameters::WRAP_METHOD::CLAMP_TO_EDGE`,
+    `TextureParameters::FILTER_METHOD::NEAREST`, and `GL_FLOAT`.
 
-[ ]{.c1}
+### Task 14:
 
-[Task 14:]{.c5}
-
-[Great! Now to update the particles. You can see we already set up some
-of the logic for you in drawParticles(). prevFBO will hold the last
+Great! Now to update the particles. You can see we already set up some
+of the logic for you in `drawParticles()`. `prevFBO` will hold the last
 particle state. We will update the particles from there and draw them to
-nextFBO.]{.c1}
+`nextFBO`.
 
--   [In drawParticles(), bind nextFBO.]{.c1}
--   [Note: we don't need to call glClear here because we know we're
-    going to be overwriting all the pixels we care about.]{.c1}
--   [Use the program m_particleUpdateProgram]{.c1}
--   [Setup the textures to read from. We have two textures, so we need
-    to tell which texture to put where:]{.c1}
+-   In `drawParticles()`, bind `nextFBO`
+-   Note: we don't need to call `glClear` here because we know we're
+    going to be overwriting all the pixels we care about.
+-   Use the program `m_particleUpdateProgram`
+-   Setup the textures to read from. We have two textures, so we need
+    to tell which texture to put where:
+    -   Call `glActiveTexture` with `GL_TEXTURE0`.
+    -   Bind `prevFBO->getColorAttachment(0)`.
+    -   Call `glActiveTexture` with `GL_TEXTURE1`.
+    -   Bind `prevFBO->getColorAttachment(1)`.
 
-```{=html}
-<!-- -->
-```
--   [Call glActiveTexture with GL_TEXTURE0.]{.c1}
--   [Bind prevFBO-\>getColorAttachment(0).]{.c1}
--   [Call glActiveTexture with GL_TEXTURE1.]{.c1}
--   [Bind prevFBO-\>getColorAttachment(1).]{.c1}
+-   Send the uniforms to our shaders using
+    `glUniform***`. We will use the following
+    uniforms:
+    -   A `float` for whether or not it's the first
+        pass, as GLSL doesn't support bools (pass in `firstPass`)
+    -   An `int` for the number of particles
+        (`m_numParticles`)
+    -   Two textures, `prevPos` and `prevVel`. These are sent as
+        `ints`. Send `0` for `prevPos` and `1` for `prevVel`,
+        representing the active texture bindings we used for them.
 
-```{=html}
-<!-- -->
-```
--   [Send the uniforms to our shaders using
-    ]{.c11}[glUniform\*\*\*]{.c11 .c12}[. We will use the following
-    uniforms:]{.c1}
-
-```{=html}
-<!-- -->
-```
--   [A ]{.c11}[float ]{.c11 .c24}[for whether or not it's the first
-    pass, as GLSL doesn't support bools (pass in firstPass)]{.c1}
--   [An ]{.c11}[int ]{.c11 .c24}[for the number of particles
-    (m_numParticles)]{.c1}
--   [Two textures, prevPos and prevVel. These are sent as
-    ]{.c11}[ints]{.c11 .c24}[. Send 0 for prevPos and 1 for prevVel,
-    representing the active texture bindings we used for them.]{.c1}
-
-```{=html}
-<!-- -->
-```
--   [Draw a fullscreen quad using m_quad. Note: this will not draw to
+-   Draw a fullscreen quad using `m_quad`. Note: this will not draw to
     the size of the whole screen, but instead to the size of our FBO
-    because of the glViewport call in FBO::bind(). This means that our
-    shader will operate on each particle, as we wanted.]{.c1}
+    because of the `glViewport` call in `FBO::bind()`. This means that our
+    shader will operate on each particle, as we wanted.
 
-[ ]{.c1}
+### Task 15:
 
-[Task 15:]{.c5}
-
-[Let's fill in our update shader now. Most of it is provided. We just
+Let's fill in our update shader now. Most of it is provided. We just
 need to fill in the update functions and the output locations. Let's
-start with telling particles_update.frag which color attachments it
-should output. At the top of particles_update.frag, declare the outputs,
-pos and vel, with explicit locations. pos should have location 0 and vel
-should have location 1, because those are the color attachments we are
-using for them. Both are vec4s. To declare an explicit location for a
-uniform, you do something like this:]{.c1}
+start with telling `particles_update.frag` which color attachments it
+should output. At the top of `particles_update.frag`, declare the outputs,
+`pos` and `vel`, with explicit locations. `pos` should have location `0` and `vel`
+should have location `1`, because those are the color attachments we are
+using for them. Both are `vec4`s. To declare an explicit location for a
+uniform, you do something like this:
+-   `layout(location = <desired location>) out <output type> <output name>;`
 
--   [layout(location = ]{.c11}[\<desired location\>]{.c11 .c24}[) out
-    ]{.c11}[\<output type\> \<output name\>]{.c11 .c24}[;]{.c1}
+### Task 16:
 
-[ ]{.c17 .c29 .c38}
-
-[Task 16:]{.c5}
-
-[These texture attachments are not going to update themselves so let's
+These texture attachments are not going to update themselves so let's
 fill that out. Remember that the xyz component represent the physics
 portion of an individual particle, whether it is position or velocity.
 The w component of position and velocity will determine the particle's
-lifetime and its age respectively.  In the same file:]{.c1}
+lifetime and its age respectively.  In the same file:
 
--   [Fill in updatePosition by sampling prevPos and prevVel at uv and
-    calculating pos + vel \* dt. The w component shouldn't change from
-    prevPos, as it is the lifetime. This is the set amount of time the
-    particle will show on the screen and is therefore constant.]{.c1}
--   [Fill in updateVelocity by sampling prevVel at uv and calculating
-    vel + gravity \* dt. The w component should increase by dt, as it is
-    the age. ]{.c1}
+-   Fill in `updatePosition` by sampling `prevPos` and `prevVel` at `uv` and
+    calculating `pos + vel * dt`. The `w` component shouldn't change from
+    `prevPos`, as it is the lifetime. This is the set amount of time the
+    particle will show on the screen and is therefore constant.
+-   Fill in `updateVelocity` by sampling `prevVel` at `uv` and calculating
+    `vel + gravity * dt`. The `w` component should increase by `dt`, as it is
+    the age.
 
-[ ]{.c17 .c29 .c38}
+### Task 17:
 
-[Task 17:]{.c5}
+Great! Now we'll draw the particles to the screen. Back in
+`GLWidget::drawParticles`:
 
-[Great! Now we'll draw the particles to the screen. Back in
-GLWidget::drawParticles:]{.c1}
-
--   [Unbind nextFBO so we're drawing to the default framebuffer]{.c1}
--   [Clear the color and depth buffers]{.c1}
--   [Use the program m_particleDrawProgram]{.c1}
--   [Call setParticleViewport(). This is a helper function that we
+-   Unbind `nextFBO` so we're drawing to the default framebuffer
+-   Clear the `color` and `depth` buffers
+-   Use the program `m_particleDrawProgram`
+-   Call `setParticleViewport()`. This is a helper function that we
     provided that will center the viewport around {0,0} with an aspect
-    ratio of 1:1 so the particles aren't distorted.]{.c1}
--   [Similar to before, set up our textures to read from:]{.c1}
+    ratio of 1:1 so the particles aren't distorted.
+-   Similar to before, set up our textures to read from:
+    -   `glActiveTexture` with `GL_TEXTURE0`
+    -   Bind `nextFBO->getColorAttachment(0)`
+    -   `glActiveTexture` with `GL_TEXTURE1`
+    -   Bind `nextFBO->getColorAttachment(1)`
 
-```{=html}
-<!-- -->
-```
--   [glActiveTexture with GL_TEXTURE0]{.c1}
--   [Bind nextFBO-\>getColorAttachment(0)]{.c1}
--   [glActiveTexture with GL_TEXTURE1]{.c1}
--   [Bind nextFBO-\>getColorAttachment(1)]{.c1}
+-   Set up the uniforms
+    -   An `int`, `0`, for `pos`, because it's
+        `GL_TEXTURE0`
+    -   An `int`, `1`, for `vel`, because it's
+        `GL_TEXTURE1`
+    -   An `int`, `m_numParticles`, for `numParticles`
 
-```{=html}
-<!-- -->
-```
--   [Set up the uniforms]{.c1}
-
-```{=html}
-<!-- -->
-```
--   [An ]{.c11}[int]{.c11 .c24}[, 0, for pos, because it's
-    GL_TEXTURE0]{.c1}
--   [An ]{.c11}[int]{.c11 .c24}[, 1, for vel, because it's
-    GL_TEXTURE1]{.c1}
--   [An ]{.c11}[int]{.c11 .c24}[, m_numParticles, for numParticles]{.c1}
-
-```{=html}
-<!-- -->
-```
--   [Draw one triangle for each particle.  To do this, we need a VAO,
+-   Draw one triangle for each particle.  To do this, we need a VAO,
     but it doesn't need any associated data or state, so we've prepared
-    a simple one for you.]{.c1}
+    a simple one for you.
+    -   Call `glBindVertexArray` with `m_particlesVAO`
+    -   Using `glDrawArrays`, draw `3 * m_numParticles` vertices using
+        `GL_TRIANGLES`
+    -   Unbind the VAO
 
-```{=html}
-<!-- -->
-```
--   [Call glBindVertexArray with m_particlesVAO]{.c1}
--   [Using glDrawArrays, draw 3 \* m_numParticles vertices using
-    GL_TRIANGLES]{.c1}
--   [Unbind the VAO]{.c1}
+-   Set the active texture back to `GL_TEXTURE0`
 
-```{=html}
-<!-- -->
-```
--   [Set the active texture back to GL_TEXTURE0]{.c1}
+It's Raining Particles
 
-[ ]{.c1}
-
-[It's Raining Particles]{.c3}
-
-[Nice, almost there! We just need to fill in the particles_draw shaders!
+Nice, almost there! We just need to fill in the `particles_draw` shaders!
 But wait, we don't have any vertex data, we just know where the centers
 of the particles should be. Luckily, we don't need to know the vertex
 locations; we can just generate them in the vertex shader. Here are some
-diagrams to explain what we're going to do:]{.c1}[![gpu
-particles.png](images/image24.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 651.50px; height: 466.58px;"}
+diagrams to explain what we're going to do:
 
-[]{.c1}
+![gpu
+particles.png](images/image24.png)
 
-[Task 18:]{.c5}
+### Task 18:
 
-[In particles_draw.vert:]{.c1}
+In `particles_draw.vert`:
 
--   [Fill in TRI_VERTS. These are our triangle offsets. See the diagram
-    above.]{.c1}
+-   Fill in `TRI_VERTS`. These are our triangle offsets. See the diagram
+    above.
+    -   We want to choose the offsets so that we can also use them as `uv`
+        coordinates.
+    -   The `pos` is the "anchor" point -- our particles position. We want the
+        `uv` coordinate to be such that the square has texture coordinates
+        going from 0 to 1 in both directions ({0,0} at `pos`). This can be
+        seen by the blue square. Based on the diagram, figure out the XY
+        values for `p1`, `p2`, and `p3`, and fill in `TRI_VERTS` accordingly.
 
-```{=html}
-<!-- -->
-```
--   [We want to choose the offsets so that we can also use them as uv
-    coordinates.]{.c1}
--   ["pos" is the "anchor" point \-- our particles position. We want the
-    uv coordinate to be such that the square has texture coordinates
-    going from 0 to 1 in both directions ({0,0} at pos). This can be
-    seen by the blue square. Based on the diagram, figure out the XY
-    values for p1, p2, and p3, and fill in TRI_VERTS accordingly.]{.c1}
+-   Calculate `particleID` (the index of the particle we are on) and
+    `triID` (the vertex of the current triangle that we are on). OpenGL
+    provides an input called `gl_VertexID`. This tells us what vertex the
+    shader is on, ranging from `0` to `3 * numParticles`.
+    -   `particleID = gl_VertexID / 3` (floored)
+    -   `triID = gl_VertexID % 3` (remainder of `gl_VertexID / 3`)
 
-```{=html}
-<!-- -->
-```
--   [Calculate particleID (the index of the particle we are on) and
-    triID (the vertex of the current triangle that we are on). OpenGL
-    provides an input called gl_VertexID. This tells us what vertex the
-    shader is on, ranging from 0 to 3 \* numParticles.]{.c1}
-
-```{=html}
-<!-- -->
-```
--   [particleID = gl_VertexID / 3 (floored)]{.c1}
--   [triID = gl_VertexID % 3 (remainder of gl_VertexID / 3)]{.c1}
-
-```{=html}
-<!-- -->
-```
--   [Sample pos and vel to get posTime and velAge.  You can do this
+-   Sample `pos` and `vel` to get `posTime` and `velAge`.  You can do this
     using texture if you calculate the uv coordinates yourself, or you
-    can use texelFetch, like this:]{.c1}
+    can use `texelFetch`, like this:
+    -   `texelFetch(<texture>, ivec2(particleID,0), 0)`
 
-```{=html}
-<!-- -->
-```
--   [texelFetch(]{.c11}[\<texture\>]{.c11 .c24}[, ivec2(particleID,
-    0), 0)]{.c1}
+When you run your program now and switch to the "Particle" window, you
+should see white triangles flying everywhere.
 
-[ ]{.c1}
+![](images/image21.png)
 
-[When you run your program now and switch to the "Particle" window, you
-should see white triangles flying everywhere.]{.c11}
-
-[![](images/image21.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 412.00px; height: 257.50px;"}
-
-[If the particles aren't moving correctly or nothing is drawing, check
+If the particles aren't moving correctly or nothing is drawing, check
 the output in Qt Creator for shader compilation errors or FBO errors. If
 that didn't help, check that you used the correct
-]{.c11}[glUniform\*\*\*]{.c11 .c12}[ calls, especially
-]{.c11}[glUniform1f]{.c11 .c12}[ vs ]{.c11}[glUniform1i]{.c11 .c12}[. If
+`glUniform***` calls, especially
+`glUniform1f` vs `glUniform1i`. If
 you send an integer to the GPU saying it is a float, the GPU will
 interpret the bits as a float. This could cause some uniforms in your
 shader to have junk values. Otherwise, you might need to go back and
-check that you followed the steps correctly.]{.c1}
+check that you followed the steps correctly.
 
-[  ]{.c1}
+### Task 19
 
-[Task 19:]{.c5}
-
-[Once you have that working, there's just one last problem. Why are the
+Once you have that working, there's just one last problem. Why are the
 particles white triangles? We want nice colorful circles instead. In
-particles_draw.frag, we don't want to color the fragments if our texture
+`particles_draw.frag`, we don't want to color the fragments if our texture
 coordinates are outside of a unit circle centered at {0.5, 0.5}. This is
 why we did that complicated triangle offset earlier. We have provided
-you with the method pickRainbowColor() that sends out a vec3 color you
-can use.]{.c1}
+you with the method `pickRainbowColor()` that sends out a `vec3` color you
+can use.
 
--   [If the uv coordinate is within the unit circle (length(uv - 0.5) \<
-    0.5), color it using the input "color" with an alpha of 1.
-    Otherwise, call discard. "discard" tells the shader to not color
-    this fragment.]{.c1}
+-   If the uv coordinate is within the unit circle (`length(uv - 0.5) <
+    0.5`), color it using the input `color` with an alpha of 1.
+    Otherwise, call `discard`. `discard` tells the shader to not color
+    this fragment.
 
-[ ]{.c1}
-
-[You're done! Congratulations! We skipped over a few of steps there, but
+You're done! Congratulations! We skipped over a few of steps there, but
 you should have a general sense of the idea behind GPU particles. We
 encourage you to reuse the classes you filled in today for your final
-project or any other project you want.]{.c1}
+project or any other project you want.
 
-[ ]{.c1}
 
-# [End]{.c3} {#h.5jjj2fc7g3ol .c41}
+Now you are ready to show your program to a TA to get checked
+off!
 
-[Now you are ready to show your program to a TA to get checked
-off!]{.c1}
+Be prepared to answer one or more of the following:
 
-[Be prepared to answer one or more of the following:]{.c1}
+-   Why is the width and height for the FBOs `m_numParticles` and `1`
+    respectively?
+-   Why is the `nextFBO` bound when the `prevFBO`'s texture attachments are
+    the ones being activated?
+-   We didn't use the depth attachment for this lab, but can you think
+    of a situation where you may want to use it?
 
--   [Why is the width and height for the FBOs m_numParticles and 1
-    respectively?]{.c1}
--   [Why is the nextFBO bound when the prevFBO's texture attachments are
-    the ones being activated?]{.c1}
--   [We didn't use the depth attachment for this lab, but can you think
-    of a situation where you may want to use it?]{.c1}
+Food for thought
 
-[ ]{.c1}
+There's plenty of other cool tricks you can do if you want. None of
+these are required for this lab:
 
-[Food for thought]{.c3}
-
-[There's plenty of other cool tricks you can do if you want. None of
-these are required for this lab:]{.c1}
-
--   [Color particles differently. We used a rainbow gradient, but you
+-   Color particles differently. We used a rainbow gradient, but you
     could do whatever! You could even properly texture map your
     particles using the uv coordinates (that's why we made them go from
-    0 to 1 in that square around the particle).]{.c1}
--   [Change particle radius dynamically. We made the particle grow when
+    0 to 1 in that square around the particle).
+-   Change particle radius dynamically. We made the particle grow when
     they are born and shrink when they die, but there's plenty more you
-    could do!]{.c1}
--   [Have more interesting update methods. You can add additional forces
+    could do!
+-   Have more interesting update methods. You can add additional forces
     to make more complicated behavior, or update the particles to move
-    along a specific curve.]{.c1}
--   [Store particles in a 2D array instead of a 1D array. This would
+    along a specific curve.
+-   Store particles in a 2D array instead of a 1D array. This would
     allow you to add more particles, as a 1 dimensional texture isn't
     very optimal. OpenGL has a limit on render buffer dimension that
     will vary from machine to machine. It is usually somewhere between
@@ -393,58 +292,43 @@ these are required for this lab:]{.c1}
     indexing, you can only support that many particles. With 2D
     indexing, the number of particles you could store would be squared,
     allowing you to store millions of particles instead of our preset
-    5000!]{.c1}
--   [Draw particles in world space instead of screen space. In this lab,
+    5000!
+-   Draw particles in world space instead of screen space. In this lab,
     we drew our particles in the space from -1 to 1 in each dimension.
     In fact, our particles all had a z position of 0, so they were
     basically 2D particles. To draw 3D particles, you would instead need
     to transform the particle triangles from world space to screen
     space. This is slightly more complicated, because you would also
     need to handle billboarding, or making the particles all face the
-    camera to give the illusion of spherical particles.]{.c1}
+    camera to give the illusion of spherical particles.
 
-[ ]{.c1}
+Check out some of these examples:
 
-[Check out some of these examples:]{.c1}
+-   [https://threejs.org/examples/?q=particle\#webgl_gpu_particle_system](https://www.google.com/url?q=https://threejs.org/examples/?q%3Dparticle%23webgl_gpu_particle_system&sa=D&source=editors&ust=1630507972544000&usg=AOvVaw3DAjD1MyqdJAQl63y7wkwN)
+-   [https://lab.hakim.se/trail/02/](https://www.google.com/url?q=https://lab.hakim.se/trail/02/&sa=D&source=editors&ust=1630507972545000&usg=AOvVaw1m7LRCnC77WvwWc8F2gKa-)
+-   [https://www.youtube.com/watch?v=CMVRILPTWzU](https://www.google.com/url?q=https://www.youtube.com/watch?v%3DCMVRILPTWzU&sa=D&source=editors&ust=1630507972545000&usg=AOvVaw2okLwp0HuENJ8ihs-tMF11)
 
--   [[https://threejs.org/examples/?q=particle\#webgl_gpu_particle_system](https://www.google.com/url?q=https://threejs.org/examples/?q%3Dparticle%23webgl_gpu_particle_system&sa=D&source=editors&ust=1630507972544000&usg=AOvVaw3DAjD1MyqdJAQl63y7wkwN){.c14}]{.c18
-    .c11}
--   [[https://lab.hakim.se/trail/02/](https://www.google.com/url?q=https://lab.hakim.se/trail/02/&sa=D&source=editors&ust=1630507972545000&usg=AOvVaw1m7LRCnC77WvwWc8F2gKa-){.c14}]{.c11
-    .c18}
--   [[https://www.youtube.com/watch?v=CMVRILPTWzU](https://www.google.com/url?q=https://www.youtube.com/watch?v%3DCMVRILPTWzU&sa=D&source=editors&ust=1630507972545000&usg=AOvVaw2okLwp0HuENJ8ihs-tMF11){.c14}]{.c18
-    .c11}
+# Particles: Maya Version
 
-[[](https://www.google.com/url?q=https://www.youtube.com/watch?v%3DCMVRILPTWzU&sa=D&source=editors&ust=1630507972545000&usg=AOvVaw2okLwp0HuENJ8ihs-tMF11){.c14}]{.c18
-.c11 .c35 .c46}
-
-[  ]{.c1}
-
-[Particles -- Maya Version]{.c11 .c43}^[\[a\]](#cmnt1){#cmnt_ref1}^
-
-[In lab (??) we explored how to use Maya. Maya is useful for creating
+In lab (??) we explored how to use Maya. Maya is useful for creating
 complex visual effects because of its (??). It has lots of features for
-simulating particles and other phenomena. It also has a python (and MEL-
-]{.c11}[Maya Embedded Language) ]{.c11}[scripting API which allows you
+simulating particles and other phenomena. It also has a python and MEL (Maya Embedded Language) scripting API which allows you
 to create complex scenes and effects with a few lines of code. In this
 section of the lab, we will use Maya's GUI to implement a colorful
 particle emitter, and then replicate the scene using python scripting.
 In the last part of the lab we will use our programming knowledge to
 create cool particle-based effects within Maya using a python
-script.]{.c11}
+script.
 
-[Part 1: Creating a shaded particle emitter in maya]{.c16 .c17}
+## Part 1: Creating a shaded particle emitter in Maya
 
-[]{.c1}
+### Task 1: Create a particle emitter
 
-[Task 1: Create a particle emitter]{.c29}
-
-[]{.c1}
-
-1.  [In the FX tab in Maya, create an emitter. Maya has created
+1.  In the FX tab in Maya, create an emitter. Maya has created
     "emitter" objects for you that you can create to model things like a
     stream of particles to simulate fireworks or explosions. To create
     one in the application you have to select the FX tab and then the
-    circled "emitter" button.]{.c1}
+    circled "emitter" button.
 
 [![](images/image8.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 61.33px;"}
 
