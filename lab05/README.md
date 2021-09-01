@@ -124,7 +124,13 @@ Consider a vertex ***P*** surrounded by eight neighboring vertices ***n<sub>0</s
 ![Normal of a vertex based on its eight neighboring triangles](img/0008.png)
 
 - The normal vector of a triangle is the normalized cross product between two of its edges.
-- *Ex.* The normal of triangle ![(P, n0, n1)](https://render.githubusercontent.com/render/math?math=(P,n_0,n_1)) is ![Normalized cross product of P to n0 and P to n1](https://render.githubusercontent.com/render/math?math=||\overline{Pn_0}\times\overline{Pn_1}||).
+- *Ex.* The normal of triangle
+
+  ![(P, n0, n1)](img/latex0000.png) 
+  
+  is
+  
+  ![Normalized cross product of P to n0 and P to n1](img/latex0001.png).
 
 #### *Task 6:*
 Compute the normal vector at a vertex by taking the average of the normals of the eight neighboring triangles.
