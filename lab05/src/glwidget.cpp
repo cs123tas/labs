@@ -2,6 +2,7 @@
 
 #include "cs123_lib/resourceloader.h"
 #include "cs123_lib/errorchecker.h"
+#include "gl/shaders/ShaderAttribLocations.h"
 #include <QMouseEvent>
 #include <QWheelEvent>
 #include <iostream>
@@ -26,7 +27,15 @@ void GLWidget::initializeGL() {
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
     m_program = ResourceLoader::createShaderProgram(":/shaders/shader.vert", ":/shaders/shader.frag");
-    m_terrain.init();
+
+    std::vector<glm::vec3> data = m_terrain.init();
+    glPolygonMode(GL_FRONT_AND_BACK, m_terrain.isFilledIn() ? GL_FILL : GL_LINE);
+    // Initialize openGLShape.
+    m_terrain.openGLShape = std::make_unique<OpenGLShape>();
+    m_terrain.openGLShape->setVertexData(&data[0][0], data.size() * 3, VBO::GEOMETRY_LAYOUT::LAYOUT_TRIANGLE_STRIP, 2 * data.size());
+    m_terrain.openGLShape->setAttribute(ShaderAttrib::POSITION, 3, 0, VBOAttribMarker::DATA_TYPE::FLOAT, false);
+    m_terrain.openGLShape->setAttribute(ShaderAttrib::NORMAL, 3, sizeof(glm::vec3), VBOAttribMarker::DATA_TYPE::FLOAT, false);
+    m_terrain.openGLShape->buildVAO();
 
     rebuildMatrices();
 }
