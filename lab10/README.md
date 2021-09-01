@@ -330,501 +330,287 @@ script.
     one in the application you have to select the FX tab and then the
     circled "emitter" button.
 
-[![](images/image8.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 61.33px;"}
+![](images/image8.png)
 
-2.  [When you create the emitter, a properties tab should appear which
-    will allow you to configure your particle emitter.]{.c1}
+2.  When you create the emitter, a properties tab should appear which
+    will allow you to configure your particle emitter.
 
-[![](images/image23.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 276.00px;"}
+![](images/image23.png)
 
-1.  [Position your emitter at X=0; Y=5; Z=0]{.c1}
+1.  Position your emitter at X=0; Y=5; Z=0
 
-[![](images/image10.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 269.08px; height: 261.50px;"}
+![](images/image10.png)
 
-[]{.c1}
+3.  Toggle the play button on, you should see a downward stream of
+    particles
 
-3.  [Toggle the play button on, you should see a downward stream of
-    particles]{.c1}
+![](images/image15.png)
 
-[![](images/image15.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 330.67px;"}
+### Task 2: Manipulate Particle Direction
 
-[]{.c1}
+We will manipulate particle direction by disabling gravity and using an
+external force field. To do this:
 
-[Task 2: Manipulate Particle Direction]{.c29}
-
-[]{.c1}
-
-[We will manipulate particle direction by disabling gravity and using an
-external force field. To do this:]{.c1}
-
-[]{.c1}
-
-1.  [Hit pause on the particle emitter mid-emission and select the
+1.  Hit pause on the particle emitter mid-emission and select the
     particle stream. On the left half of your screen, navigate to the
     nParticleShape tab, and check ignore solver gravity. This should
-    make your particles emit in every direction.]{.c1}
+    make your particles emit in every direction.
 
-[![](images/image26.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 248.00px;"}
+![](images/image26.png)
 
-[]{.c1}
+After disabling gravity:
 
-[After disabling gravity:]{.c1}
+![](images/image17.png)
 
-[]{.c1}
+2.  To create a force field, toggle your menu to FX
 
-[![](images/image17.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 264.76px; height: 171.50px;"}
+![](images/image1.png)
 
-[]{.c1}
+Navigate to Fields/Solvers and click on Turbulence
 
-[]{.c1}
+![](images/image11.png)
 
-2.  [To create a force field, toggle your menu to FX]{.c1}
+Confirm the default magnitude value of 15, and hit apply
 
-[![](images/image1.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 89.33px;"}
+![](images/image22.png)
 
-[Navigate to Fields/Solvers and click on Turbulence]{.c1}
-
-[![](images/image11.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 105.33px;"}
-
-[Confirm the default magnitude value of 15, and hit apply]{.c1}
-
-[![](images/image22.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 334.63px; height: 310.50px;"}
-
-[Now when you hit play, the motion of your particles should change from
+Now when you hit play, the motion of your particles should change from
 a uniform 360 degree emission, to emission in the direction of your
-newly added force field]{.c1}
+newly added force field
 
-[![](images/image27.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 348.50px; height: 262.55px;"}
+![](images/image27.png)
 
-[]{.c1}
+### Task 3: Shading
 
-[Task 3: Shading]{.c29}
+1.  First add a light to the scene:
 
-[]{.c1}
+    - Navigate back to the modeling menu and toggle the rendering
+    tab
 
-1.  [First add a light to the scene: ]{.c1}
+    ![](images/image12.png)
 
-```{=html}
-<!-- -->
-```
-1.  [Navigate back to the modeling menu and toggle the rendering
-    tab]{.c1}
+    - Add a directional light to the scene and configure its properties
+        to face the particle emitter
 
-[]{.c1}
+    ![](images/image2.png)
 
-[![](images/image12.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 98.67px;"}
-
-[]{.c1}
-
-2.  [Add a directional light to the scene and configure its properties
-    to face the particle emitter]{.c1}
-
-[![](images/image2.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 262.67px;"}
-
-[]{.c1}
-
-2.  [Configure the light for the arnold shader by navigating to the
+2.  Configure the light for the arnold shader by navigating to the
     directionalLightShape tab, going to the arnold menu, and setting the
-    exposure to 1 and angle to 10]{.c1}
+    exposure to 1 and angle to 10
 
-[![](images/image28.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 486.94px; height: 409.69px;"}
+    ![](images/image28.png)
 
-[]{.c1}
+    -  Add an arnold surface shader by right clicking on the particle
+        emission and selecting 'Assign New Material'
 
-1.  [Add an arnold surface shader by right clicking on the particle
-    emission and selecting 'Assign New Material']{.c1}
+    ![](images/image19.png)
 
-[![](images/image19.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 623.50px; height: 390.69px;"}
+    - In the material menu select aiStandardSurface in the Arnold Surface
+        section
 
-[]{.c1}
+    ![](images/image5.png)
 
-2.  [In the material menu select aiStandardSurface in the Arnold Surface
-    section]{.c1}
+3.  Next let's navigate to the hypershade node editor
 
-[![](images/image5.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 286.94px; height: 726.50px;"}
+![](images/image16.png)
 
-[]{.c1}
+4.  In the node editor, select the aiStandardShader we just applied to
+    our particles
 
-3.  [Next let's navigate to the hypershade node editor]{.c1}
+![](images/image25.png)
 
-[![](images/image16.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 108.00px;"}
-
-4.  [In the node editor, select the aiStandardShader we just applied to
-    our particles]{.c1}
-
-[![](images/image25.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 333.33px;"}
-
-[]{.c1}
-
-5.  [To bring the aiStandardSurface to the graph editor, right click on
+5.  To bring the aiStandardSurface to the graph editor, right click on
     it in the materials menu and drag your mouse to the graph editor.
     When you release your mouse, the node should show up in the node
-    editor.]{.c1}
+    editor.
+
+![](images/image4.png)
 
 []{.c1}
 
-[![](images/image4.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 390.67px;"}
-
-[]{.c1}
-
-6.  [In the node creator menu, search for jitter, aiColorJitter should
+6.  In the node creator menu, search for jitter, aiColorJitter should
     show up. Double click on it. This should add the color jitter node
-    to the graph editor]{.c1}
+    to the graph editor
 
-[![](images/image6.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 298.67px;"}
+![](images/image6.png)
 
-[]{.c1}
+7.  Connect the color jitter's out color to the aiStandardSurface's
+    base color
 
-7.  [Connect the color jitter's out color to the aiStandardSurface's
-    base color]{.c1}
+![](images/image18.png)
 
-[![](images/image18.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 376.00px;"}
-
-8.  [Navigate to the Material viewer on the right half of the screen.
+8.  Navigate to the Material viewer on the right half of the screen.
     Set it up to preview arnold shader colors by selecting the arnold
-    option on the first dropdown]{.c1}
+    option on the first dropdown
 
-[![](images/image20.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 734.67px;"}
+![](images/image20.png)
 
-[]{.c1}
+9.  Toggle type to face
 
-9.  [Toggle type to face]{.c1}
+![](images/image3.png)
 
-[![](images/image3.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 888.00px;"}
-
-10. [To randomize colors, change the input from grey to a different base
+10. To randomize colors, change the input from grey to a different base
     color, set the hue min to -1 and hue max to +1, saturation min and
-    max to 10.]{.c1}
+    max to 10.
 
-[![](images/image14.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 850.67px;"}
+![](images/image14.png)
 
-11. [Exit the hypershade menu]{.c1}
-12. [Switch your renderer to Arnold]{.c1}
+11. Exit the hypershade menu
+12. Switch your renderer to Arnold
 
-[![](images/image29.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 490.50px; height: 672.87px;"}
+![](images/image29.png)
 
-13. [Hit play on the arnold viewportrenderer. This should shade your
-    scene with the hypershade parameters we set]{.c1}
+13. Hit play on the arnold viewportrenderer. This should shade your
+    scene with the hypershade parameters we set
 
-[![](images/image9.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 333.50px; height: 261.35px;"}
+![](images/image9.png)
 
-[]{.c1}
+One frame of the shaded scene:
 
-[One frame of the shaded scene:]{.c5}
+![](images/image7.png)
 
-[![](images/image7.png)]{style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 528.00px;"}
+## Part 2: Creating a particle emitter with a python script.
 
-[]{.c1}
-
-[Part 2: Creating a particle emitter with a python script.]{.c16}
-
-[]{.c1}
-
-[Now that we have manually created a colorful particle emitter, we will
+Now that we have manually created a colorful particle emitter, we will
 replicate the same scene using python. A link to the maya python API is
-here:
-]{.c11}[[https://download.autodesk.com/us/maya/2009help/api/main.html](https://www.google.com/url?q=https://download.autodesk.com/us/maya/2009help/api/main.html&sa=D&source=editors&ust=1630507972554000&usg=AOvVaw0x8RCdlIuiojuM0kNyR9sp){.c14}]{.c18
-.c11}
+here: [https://download.autodesk.com/us/maya/2009help/api/main.html](https://www.google.com/url?q=https://download.autodesk.com/us/maya/2009help/api/main.html&sa=D&source=editors&ust=1630507972554000&usg=AOvVaw0x8RCdlIuiojuM0kNyR9sp)
 
-[]{.c1}
+1.  Create a new scene
+2.  Open the maya script editor
+3.  Flip to the python tab
+4.  Import the necessary maya scripting packages
 
-1.  [Create a new scene]{.c1}
-2.  [Open the maya script editor]{.c1}
-3.  [Flip to the python tab]{.c1}
-4.  [Import the necessary maya scripting packages]{.c1}
+```
+`mport maya.cmds as cmds
+from mtoa.cmds.arnoldRender import arnoldRender
+```
 
-[import]{.c11 .c34}[ ]{.c10}[maya]{.c10 .c12}[.]{.c10}[cmds]{.c10
-.c12}[ ]{.c10}[as]{.c11 .c34}[ ]{.c10}[cmds]{.c10 .c12 .c30}
+5.  Create a particle emitter
 
-[from]{.c11 .c34}[ ]{.c10}[mtoa]{.c10 .c12}[.]{.c10}[cmds]{.c10
-.c12}[.]{.c10}[arnoldRender]{.c10 .c12}[ ]{.c10}[import]{.c11
-.c34}[ ]{.c10}[arnoldRender]{.c10 .c30 .c12}
+```
+cmds.emitter(pos=(0,5,0), type="omni", rate=500, n="emitter")
+cmds.particle( n='emitted' )
+particle_emitter = cmds.connectDynamic( 'emitted', em='emitter')
+```
 
-5.  [Create a particle emitter]{.c1}
+6.  Add turbulence forces to influence the motion of the particle
 
-[]{.c1}
+```
+cmds.turbulence( n='turbulence', m=15.0)
+cmds.connectDynamic(particle_emitter, f='turbulence')
+```
 
-[cmds]{.c10 .c12}[.]{.c10}[emitter]{.c10 .c12}[(]{.c10}[pos]{.c10
-.c12}[=]{.c11 .c15}[(]{.c10}[0]{.c22 .c11}[,]{.c10}[5]{.c22
-.c11}[,]{.c10}[0]{.c22 .c11}[), ]{.c10}[type=]{.c11 .c15}[\"omni\"]{.c23
-.c11}[, ]{.c10}[rate]{.c10 .c12}[=]{.c11 .c15}[500]{.c22 .c11}[,
-]{.c10}[n]{.c10 .c12}[=]{.c11 .c15}[\"emitter\"]{.c23 .c11}[)]{.c10
-.c27}
+7.  Add a directional light to the scene
 
-[cmds]{.c10 .c12}[.]{.c10}[particle]{.c10 .c12}[( ]{.c10}[n]{.c10
-.c12}[=]{.c11 .c15}[\'emitted\']{.c23 .c11}[ )]{.c10 .c27}
+```
+light = cmds.directionalLight(rotation=(-45, -60, -80), position=(17, 16, 15), intensity=1.0, n='light')
+```
 
-[particle_emitter]{.c10 .c12}[ ]{.c10}[=]{.c11 .c15}[ ]{.c10}[cmds]{.c10
-.c12}[.]{.c10}[connectDynamic]{.c10 .c12}[( ]{.c10}[\'emitted\']{.c23
-.c11}[, ]{.c10}[em]{.c10 .c12}[=]{.c11 .c15}[\'emitter\']{.c23
-.c11}[ )]{.c10 .c27}
+8.  Configure the light for the Arnold shader
 
-[\# Creates a particle emitter.]{.c25 .c11 .c12}
+```
+cmds.setAttr('light.aiExposure', 1)
+cmds.setAttr('light.aiAngle', 10)
+```
 
-6.  [Add turbulence forces to influence the motion of the particle]{.c1}
+9.  Add an arnold surface shader for the particles
 
-[cmds]{.c10 .c12}[.]{.c10}[turbulence]{.c10 .c12}[( ]{.c10}[n]{.c10
-.c12}[=]{.c11 .c15}[\'turbulence\']{.c11 .c23}[, ]{.c10}[m]{.c10
-.c12}[=]{.c11 .c15}[15.0]{.c22 .c11}[)]{.c10 .c27}
+```
+particleShader = cmds.shadingNode('aiStandardSurface', asShader=True)
+cmds.select('emitted')
+cmds.hyperShade(assign=particleShader)
+```
 
-[cmds]{.c10 .c12}[.]{.c10}[connectDynamic]{.c10
-.c12}[(]{.c10}[particle_emitter]{.c10 .c12}[, ]{.c10}[f]{.c10
-.c12}[=]{.c11 .c15}[\'turbulence\']{.c23 .c11}[)]{.c10 .c27}
+10. Add color jittering to randomize particle color
 
-[\# Adds an external turbulence force to influence the motion of the
-particles.]{.c25 .c11 .c12}
+```
+colorJitter = cmds.shadingNode('aiColorJitter', asShader=True)
+cmds.connectAttr( colorJitter+'.outColor', particleShader+'.baseColor', force=True)
+```
 
-[​]{.c10 .c27}
+11. Set the default color of the particles to aqua
 
-7.  [Add a directional light to the scene]{.c1}
+`cmds.setAttr(colorJitter+".input", 0, 1, 1, type="double3")`
 
-[light]{.c10 .c12}[ ]{.c10}[=]{.c11 .c15}[ ]{.c10}[cmds]{.c10
-.c12}[.]{.c10}[directionalLight]{.c10 .c12}[(]{.c10}[rotation]{.c10
-.c12}[=]{.c11 .c15}[(]{.c10}[-]{.c11 .c15}[45]{.c22 .c11}[,
-]{.c10}[-]{.c11 .c15}[60]{.c22 .c11}[, ]{.c10}[-]{.c11 .c15}[80]{.c11
-.c22}[), ]{.c10}[position]{.c10 .c12}[=]{.c11 .c15}[(]{.c10}[17]{.c22
-.c11}[, ]{.c10}[16]{.c22 .c11}[, ]{.c10}[15]{.c22 .c11}[),
-]{.c10}[intensity]{.c10 .c12}[=]{.c11 .c15}[1.0]{.c22 .c11}[,
-]{.c10}[n]{.c10 .c12}[=]{.c11 .c15}[\'light\']{.c23 .c11}[)]{.c10 .c27}
+12. Set the color range to the entire spectrum
 
-[\# Adds a light to the scene]{.c25 .c11 .c12}
+```
+cmds.setAttr(colorJitter+".faceHueMin", 1)
+cmds.setAttr(colorJitter+".faceHueMax", -1)
+```
 
-8.  [Configure the light for the arnold shader]{.c1}
+13. Set the saturation to max
 
-[​]{.c10 .c27}
+```
+cmds.setAttr(colorJitter+".faceSaturationMin", 10)
+cmds.setAttr(colorJitter+".faceSaturationMin", 10)
+```
 
-[cmds]{.c10 .c12}[.]{.c10}[setAttr]{.c10
-.c12}[(]{.c10}[\'light.aiExposure\']{.c23 .c11}[, ]{.c10}[1]{.c22
-.c11}[)]{.c10 .c27}
+14. Set the camera position to a good place to capture the scene
 
-[cmds]{.c10 .c12}[.]{.c10}[setAttr]{.c10
-.c12}[(]{.c10}[\'light.aiAngle\']{.c23 .c11}[, ]{.c10}[10]{.c22
-.c11}[)]{.c10 .c27}
+```
+cmds.camera('persp', e=True, position=(1.5, 6, 4.5), rotation=(-17,375,0))
+```
 
-[\# Configures the light for Arnold shader]{.c25 .c11 .c12}
+15. Hit play on the scene and scub to a timestamp
+16. Enable the Arnold renderer and hit play!
 
-9.  [Add an arnold surface shader for the particles]{.c1}
+## Part 3: Taking Advantage of Maya Scripting
 
-[]{.c1}
-
-[​]{.c10 .c27}
-
-[particleShader]{.c10 .c12}[ ]{.c10}[=]{.c11 .c15}[ ]{.c10}[cmds]{.c10
-.c12}[.]{.c10}[shadingNode]{.c10
-.c12}[(]{.c10}[\'aiStandardSurface\']{.c23 .c11}[,
-]{.c10}[asShader]{.c10 .c12}[=]{.c11 .c15}[True]{.c11 .c34}[)]{.c10
-.c27}
-
-[cmds]{.c10 .c12}[.]{.c10}[select]{.c10 .c12}[(]{.c10}[\'emitted\']{.c23
-.c11}[)]{.c10 .c27}
-
-[cmds]{.c10 .c12}[.]{.c10}[hyperShade]{.c10 .c12}[(]{.c10}[assign]{.c10
-.c12}[=]{.c11 .c15}[particleShader]{.c10 .c12}[)]{.c10 .c27}
-
-[\# Adds Arnold Surface shader for particles]{.c25 .c11 .c12}
-
-10. [Add color jittering to randomize particle color]{.c1}
-
-[colorJitter]{.c10 .c12}[ ]{.c10}[=]{.c11 .c15}[ ]{.c10}[cmds]{.c10
-.c12}[.]{.c10}[shadingNode]{.c10 .c12}[(]{.c10}[\'aiColorJitter\']{.c23
-.c11}[, ]{.c10}[asShader]{.c10 .c12}[=]{.c11 .c15}[True]{.c11
-.c34}[)]{.c10 .c27}
-
-[cmds]{.c10 .c12}[.]{.c10}[connectAttr]{.c10 .c12}[(
-]{.c10}[colorJitter]{.c10 .c12}[+]{.c11 .c15}[\'.outColor\']{.c23
-.c11}[, ]{.c10}[particleShader]{.c10 .c12}[+]{.c11
-.c15}[\'.baseColor\']{.c23 .c11}[, ]{.c10}[force]{.c10 .c12}[=]{.c11
-.c15}[True]{.c11 .c34}[)]{.c10 .c27}
-
-[\# Adds Color jittering (to randomize the particle colors)]{.c11 .c12
-.c25}
-
-11. [Set the default color of the particles to aqua]{.c1}
-
-[cmds]{.c10 .c12}[.]{.c10}[setAttr]{.c10
-.c12}[(]{.c10}[colorJitter]{.c10 .c12}[+]{.c11 .c15}[\".input\"]{.c23
-.c11}[, ]{.c10}[0]{.c22 .c11}[, ]{.c10}[1]{.c22 .c11}[, ]{.c10}[1]{.c22
-.c11}[, ]{.c10}[type=]{.c11 .c15}[\"double3\"]{.c23 .c11}[)]{.c10 .c27}
-
-[\# Sets default color of particle to aqua]{.c25 .c11 .c12}
-
-[​]{.c10 .c27}
-
-12. [Set the color range to the entire spectrum]{.c1}
-
-[cmds]{.c10 .c12}[.]{.c10}[setAttr]{.c10
-.c12}[(]{.c10}[colorJitter]{.c10 .c12}[+]{.c11
-.c15}[\".faceHueMin\"]{.c23 .c11}[, ]{.c10}[1]{.c22 .c11}[)]{.c10 .c27}
-
-[cmds]{.c10 .c12}[.]{.c10}[setAttr]{.c10
-.c12}[(]{.c10}[colorJitter]{.c10 .c12}[+]{.c11
-.c15}[\".faceHueMax\"]{.c23 .c11}[, ]{.c10}[-]{.c11 .c15}[1]{.c22
-.c11}[)]{.c10 .c27}
-
-[\# Sets color range to entire spectrum]{.c25 .c11 .c12}
-
-[​]{.c10 .c27}
-
-13. [Set the saturation to max]{.c1}
-
-[cmds]{.c10 .c12}[.]{.c10}[setAttr]{.c10
-.c12}[(]{.c10}[colorJitter]{.c10 .c12}[+]{.c11
-.c15}[\".faceSaturationMin\"]{.c23 .c11}[, ]{.c10}[10]{.c22
-.c11}[)]{.c10 .c27}
-
-[cmds]{.c10 .c12}[.]{.c10}[setAttr]{.c10
-.c12}[(]{.c10}[colorJitter]{.c10 .c12}[+]{.c11
-.c15}[\".faceSaturationMin\"]{.c23 .c11}[, ]{.c10}[10]{.c22
-.c11}[)]{.c10 .c27}
-
-[\# Sets default color saturation to highest]{.c25 .c11 .c12}
-
-[​]{.c10 .c27}
-
-[]{.c1}
-
-14. [Set the camera position to a good place to capture the scene]{.c1}
-
-[cmds]{.c10 .c12}[.]{.c10}[camera]{.c10 .c12}[(]{.c10}[\'persp\']{.c23
-.c11}[, ]{.c10}[e]{.c10 .c12}[=]{.c11 .c15}[True]{.c11 .c34}[,
-]{.c10}[position]{.c10 .c12}[=]{.c11 .c15}[(]{.c10}[1.5]{.c22 .c11}[,
-]{.c10}[6]{.c22 .c11}[, ]{.c10}[4.5]{.c22 .c11}[),
-]{.c10}[rotation]{.c10 .c12}[=]{.c11 .c15}[(]{.c10}[-]{.c11
-.c15}[17]{.c22 .c11}[,]{.c10}[375]{.c22 .c11}[,]{.c10}[0]{.c22
-.c11}[))]{.c10 .c27}
-
-[\# Set the camera position to a good place to capture the scene]{.c25
-.c11 .c12}
-
-15. [Hit play on the scene and scub to a timestamp]{.c1}
-16. [Enable the arnold renderer and hit play!]{.c1}
-
-[]{.c1}
-
-[Part 3: Taking Advantage of Maya Scripting]{.c16}
-
-[]{.c1}
-
-[So far we have created and ]{.c11}[shaded]{.c11}[ a single particle
+So far we have created and shaded a single particle
 emitter. To explore the benefits of maya scripting, please demonstrate a
 scene with multiple particle emitters, possibly interacting with each
 other. Our example includes multiple particle emitters moving around and
 emitting particles when they come close to each other. You can fill in
-the todos below to emulate the same scene or build your own! ]{.c1}
+the todos below to emulate the same scene or build your own!
 
-[]{.c1}
+```
+import maya.cmds as cmds
+import random
+import math
 
-[import maya.cmds as cmds]{.c19 .c17}
+## HELPER METHODS ##
 
-[import random]{.c19 .c17}
+def moveEmitters(emitters):
+    for instanceResult in emitters:
+        x = random.uniform(-10, 10)
+        y = random.uniform(0, 20)
+        z = random.uniform(-10, 10)
 
-[import math]{.c19 .c17}
+        cmds.move(x, y, z, instanceResult)
 
-[]{.c19 .c17}
 
-[]{.c19 .c31}
+def createAndGetEmitters():
+    emittersToReturn = []
+    // TODO 1: Create 50 particle emitters using a for loop. Each particle emitter should have a unique name.
+    //HINT 1: see the previous section on how to create and name a particle emitter via scripting (step 5)
+    //HINT 2: to set the rate use this command e.g: cmds.setAttr("%s.rate" % emitter1[1], 300)
 
-[def moveEmitters(emitters):]{.c19 .c17}
 
-[    for instanceResult in emitters:]{.c19 .c17}
+        emittersToReturn.append(particleEmitter)
+    return emittersToReturn
 
-[        x = random.uniform(-10, 10)]{.c19 .c17}
 
-[        y = random.uniform(0, 20)]{.c19 .c17}
+def getDistance(emitter1, emitter2):
+    diffX = cmds.getAttr("%s.translateX" % emitter1[0]) - cmds.getAttr("%s.translateX" % emitter2[0])
+    diffY = cmds.getAttr("%s.translateY" % emitter1[0]) - cmds.getAttr("%s.translateY" % emitter2[0])
+    diffZ = cmds.getAttr("%s.translateZ" % emitter1[0]) - cmds.getAttr("%s.translateZ" % emitter2[0])
 
-[        z = random.uniform(-10, 10)]{.c19 .c17}
+    return math.sqrt((diffX * diffX) + (diffY * diffY) + (diffZ * diffZ))
 
-[]{.c19 .c17}
 
-[        cmds.move(x, y, z, instanceResult)]{.c19 .c17}
+def emitOnCloseContact(emitters):
+    for emitter1 in emitters:
+        for emitter2 in emitters:
+            //TODO 2: if the distance between 2 emitters is less than 1, tell the emitters to emit particles, if not, tell them to not emit particles
+            //Hint 1: Use the getDistance method provided to compute distance
+            //Hint 2: Make sure you aren’t comparing the distance between the same emitter
 
-[]{.c19 .c31}
+## SCENE SETUP AND FRAME EXECUTION ##
 
-[]{.c19 .c31}
+emitters = createAndGetEmitters()
 
-[def createAndGetEmitters():]{.c19 .c17}
-
-[    emittersToReturn = \[\]]{.c19 .c17}
-
-[/]{.c42}[/ TODO 1: Create 50 particle emitters using a for loop. Each
-particle emitter should have a unique name.]{.c19 .c20}
-
-[//HINT 1: see the previous section on how to create and name a particle
-emitter via scripting (step 5)]{.c19 .c20}
-
-[//HINT 2: to set the rate use this command e.g:
-​​cmds.setAttr(\"%s.rate\" % emitter1\[1\], 300)]{.c19 .c20}
-
-[]{.c19 .c20}
-
-[]{.c19 .c17}
-
-[        emittersToReturn.append(particleEmitter)]{.c19 .c17}
-
-[    return emittersToReturn]{.c19 .c17}
-
-[]{.c19 .c31}
-
-[]{.c19 .c31}
-
-[def getDistance(emitter1, emitter2):]{.c19 .c17}
-
-[    diffX = cmds.getAttr(\"%s.translateX\" % emitter1\[0\]) -
-cmds.getAttr(\"%s.translateX\" % emitter2\[0\])]{.c19 .c17}
-
-[    diffY = cmds.getAttr(\"%s.translateY\" % emitter1\[0\]) -
-cmds.getAttr(\"%s.translateY\" % emitter2\[0\])]{.c19 .c17}
-
-[    diffZ = cmds.getAttr(\"%s.translateZ\" % emitter1\[0\]) -
-cmds.getAttr(\"%s.translateZ\" % emitter2\[0\])]{.c19 .c17}
-
-[]{.c17 .c19}
-
-[    return math.sqrt((diffX \* diffX) + (diffY \* diffY) + (diffZ \*
-diffZ))]{.c19 .c17}
-
-[]{.c19 .c17}
-
-[]{.c19 .c17}
-
-[def emitOnCloseContact(emitters):]{.c19 .c17}
-
-[    for emitter1 in emitters:]{.c19 .c17}
-
-[        for emitter2 in emitters:]{.c19 .c17}
-
-[//TODO 2: if the distance between 2 emitters is less than 1, tell the
-emitters to emit particles, if not, tell them to not emit
-particles]{.c19 .c20}
-
-[//Hint 1: use the getDistance method provided to compute distance, make
-sure you aren't comparing the distance between the same emitter]{.c19
-.c20}
-
-[//Hint 2: ]{.c19 .c20}
-
-[]{.c19 .c17}
-
-[emitters = createAndGetEmitters()]{.c19 .c17}
-
-[]{.c19 .c17}
-
-[for frame in range(1, 80):]{.c19 .c17}
-
-[    cmds.currentTime(frame)]{.c19 .c17}
-
-[    moveEmitters(emitters)]{.c19 .c17}
-
-[    emitOnCloseContact(emitters)]{.c19 .c17}
-
-[]{.c1}
-
-[]{.c1}
-
-::: {.c54}
-[\[a\]](#cmnt_ref1){#cmnt1}[This needs some intro motivational
-text\--why Maya is useful for creating complex visual effects, how it
-has lots of features for simulating particles and other phenomena, how
-we can use our programming knowledge to create cool particle-based
-effects within Maya.]{.c17 .c21 .c45}
-:::
+for frame in range(1, 5):
+    cmds.currentTime(frame)
+    moveEmitters(emitters)
+    emitOnCloseContact(emitters)
