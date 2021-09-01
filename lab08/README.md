@@ -310,15 +310,8 @@ Check out some of these examples:
 
 # Particles: Maya Version
 
-In lab (??) we explored how to use Maya. Maya is useful for creating
-complex visual effects because of its (??). It has lots of features for
-simulating particles and other phenomena. It also has a python and MEL (Maya Embedded Language) scripting API which allows you
-to create complex scenes and effects with a few lines of code. In this
-section of the lab, we will use Maya's GUI to implement a colorful
-particle emitter, and then replicate the scene using python scripting.
-In the last part of the lab we will use our programming knowledge to
-create cool particle-based effects within Maya using a python
-script.
+In the Introduction to Maya lab we explored how to use Autodesk Maya (often shortened to just “Maya”). Maya is a 3D graphics simulation app that is the industry standard for creating impressive 3D animations - from video games to Marvel movies! It also has a python (and MEL- Maya Embedded Language) scripting API which allows you to create complex scenes and effects with a few lines of code. One basic feature we will explore allows you to simulate particles being emitted from some source. This is the basis for interesting 3D effects like snow, fire and smoke. In this section of the lab, we will use Maya’s GUI to implement a colorful particle emitter, and then replicate the scene using python scripting. In the last part of the lab we will use our programming knowledge to create cool particle-based effects within Maya using a python script.
+
 
 ## Part 1: Creating a shaded particle emitter in Maya
 
