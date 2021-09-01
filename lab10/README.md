@@ -426,8 +426,6 @@ newly added force field
 
 ![](images/image4.png)
 
-[]{.c1}
-
 6.  In the node creator menu, search for jitter, aiColorJitter should
     show up. Double click on it. This should add the color jitter node
     to the graph editor
