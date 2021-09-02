@@ -30,6 +30,7 @@ Before we implement this lab, we need to know how to use Shadertoy.
     - `in vec2 fragCoord` : Same as `gl_FragCoord`
 
 ![](img/image7.png)
+
 Rendering with a full-screen quad
 
 ## Constructing the Ray
@@ -49,8 +50,8 @@ In the `mainImage()` function, construct the ray direction vector.
 * Normalize `rayDirection`.
 
 <p float="left">
-  <img src="img/image16.png" width="250" />
-  <img src="img/image22.png" width="250" />
+  <img src="img/image16.png" width="400" />
+  <img src="img/image22.png" width="400" />
 </p>
 
 From left to right (1) : Transform (x, y) from (w, h) to (-1, 1)
@@ -131,8 +132,8 @@ In `render()`, look at how we assign different materials to different primitives
 One of the problems with applying textures with just uvs is that it ignores issues of dimension, causing stretching. Triplanar texture mapping solves this problem, which is especially useful when it comes to terrain or displaced surfaces (which we’ll implement later).
 
 <p float="left">
-  <img src="img/image6.png" width="250" />
-  <img src="img/image18.png" width="250" />
+  <img src="img/image6.png" width="400" />
+  <img src="img/image18.png" width="400" />
 </p>
 
 Left : Terrain with normal texture mapping, Right : Terrain with Triplanar texture mapping
@@ -157,8 +158,8 @@ Distance fields are convenient because they provide global information with litt
 This means that several realistic shading techniques are made easy to implement with distance fields. Raymarching makes these techniques even more accessible! We’re going to explore these properties of distance fields to render surface displacements and soft shadows with penumbra when doing ray marching based rendering. (If you’re more adventurous, you can mess with distorting shapes too by multiplying the distance map with math functions/noise. The limits are endless!)
 
 <p float="left">
-  <img src="img/image10.png" width="250" />
-  <img src="img/image5.png" width="250" />
+  <img src="img/image10.png" width="400" />
+  <img src="img/image5.png" width="400" />
 </p>
 Left: Hard shadow, Right: Soft shadow
 
@@ -184,8 +185,8 @@ Now the shadow is smoothed around the edge and looks much better!
 The last thing we want to implement is displacement mapping, which refers to the actual displacement of points along the sphere - as opposed to normal or bump mapping.
 
 <p float="left">
-  <img src="img/image4.png" width="250" />
-  <img src="img/image5.png" width="250" />
+  <img src="img/image4.png" width="400" />
+  <img src="img/image5.png" width="400" />
 </p>
 
 Left: Sphere without displacement mapping, Right: Sphere with displacement mapping
@@ -193,12 +194,12 @@ Left: Sphere without displacement mapping, Right: Sphere with displacement mappi
 Displacement mapping is much easier to implement in ray marching as compared to ray tracing. All we need to do is to construct a displacement map and simply add the displacement to the original distance field. The displacement map can be anything, a simple math function or a complex noise map.
 
 <p float="left">
-  <img src="img/image13.png" width="250" />
-  <img src="img/image17.png" width="250" />
+  <img src="img/image13.png" width="400" />
+  <img src="img/image17.png" width="400" />
 </p>
 <p float="left">
-  <img src="img/image12.png" width="250" />
-  <img src="img/image21.png" width="250" />
+  <img src="img/image12.png" width="400" />
+  <img src="img/image21.png" width="400" />
 </p>
 Top-Left : sin(p.x) + cos(p.z) Top Right : sin(p.x) + cos(p.y)
 Bottom-Left : sin(p.x \* p.y)2 Bottom-Right : Triangle-noise
