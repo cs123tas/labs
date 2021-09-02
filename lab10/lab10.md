@@ -81,7 +81,7 @@ We’ve provided a type named `PrimitiveDist`. This struct contains a distance f
 * March your ray forward by adding a proportion (~0.1) of the distance from `map()` to marchDist. We use a proportion of the returned distance to march more quickly through wide open spaces, and less quickly when objects are nearby. This renders more quickly than marching by a constant distance at each step, and reduces visual artifacts that appear from rays passing, or “tunneling”, through a surface rather than hitting it.
 * Exit the raymarch loop if:
     - (1) The distance from `map()` is less than the threshold value -> Intersection
-    - `marchDist exceeds` the bounding distance -> No intersection
+    - `marchDist` exceeds the bounding distance -> No intersection
 * If we found an intersection then return a `PrimitiveDist` containing marchDist and the primitive from map(). Otherwise, return -1.0 and `NO_INTERSECT`.
 
 ## Representing Geometry with a Distance Map
