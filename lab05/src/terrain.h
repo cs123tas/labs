@@ -13,15 +13,18 @@ class Terrain {
 public:
     Terrain();
 
-    void init();
+    std::vector<glm::vec3> init();
     void draw();
+
+    std::unique_ptr<OpenGLShape> openGLShape;
+    bool isFilledIn();
 
 private:
     float randValue(int row, int col);
     glm::vec3 getPosition(int row, int col);
     glm::vec3 getNormal(int row, int col);
-    std::unique_ptr<OpenGLShape> m_shape;
     const float m_numRows, m_numCols;
+    const bool m_isFilledIn;
 };
 
 #endif // TERRAIN_H
