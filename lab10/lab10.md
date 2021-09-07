@@ -224,4 +224,3 @@ Be prepared to answer one or more of the following:
 ### Food for thought
 Inigo Quilez has created several demos (almost all raymarched!) on Shadertoy, which you can use as inspiration for your final project:
 https://www.shadertoy.com/user/iq
-$$ x = 5 $$
