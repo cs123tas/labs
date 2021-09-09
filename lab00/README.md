@@ -16,7 +16,7 @@ A quick overview of the tools/software you will need for computer graphics this 
 
 ## Before You Start
 
-Make sure you&#39;ve completed our [Getting Started](https://forms.gle/CWnCs9zSkxkJRcGb7) form. This will ensure you&#39;ve set up both a GitHub account and a Gradescope account. You should also have joined the Gradescope course and Piazza.
+Make sure you&#39;ve completed our [Getting Started](https://forms.gle/A1WaW3BsNjto3Psh7) form. This will ensure you&#39;ve set up both a GitHub account and a Gradescope account. You should also have joined the Gradescope course and Piazza.
 
 
 <span style="color:red">**Stop here until you&#39;ve completed the Getting Started form**</span>.
@@ -36,7 +36,7 @@ Installing Qt is now optional (but still recommended) if you wish to use FastX a
 sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 4. Install Qt (15-25 min). If you already have some other version, uninstall it first!
 
-    a. [https://download.qt.io/official\_releases/qt/5.14/5.14.2/qt-opensource-mac-x64-5.14.2.dmg](https://www.qt.io/download-qt-installer) (2.6GB)
+    a. [https://www.qt.io/download-qt-installer](https://www.qt.io/download-qt-installer) (2.6GB)
 
     b. Right-click &quot;Open&quot; or double-click on the downloaded file to show a DMG file 
     <p>
