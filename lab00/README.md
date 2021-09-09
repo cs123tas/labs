@@ -36,7 +36,7 @@ Installing Qt is now optional (but still recommended) if you wish to use FastX a
 sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 4. Install Qt (15-25 min). If you already have some other version, uninstall it first!
 
-    a. [https://download.qt.io/official\_releases/qt/5.14/5.14.2/qt-opensource-mac-x64-5.14.2.dmg](https://download.qt.io/official_releases/qt/5.14/5.14.2/qt-opensource-mac-x64-5.14.2.dmg) (2.6GB)
+    a. [https://download.qt.io/official\_releases/qt/5.14/5.14.2/qt-opensource-mac-x64-5.14.2.dmg](https://www.qt.io/download-qt-installer) (2.6GB)
 
     b. Right-click &quot;Open&quot; or double-click on the downloaded file to show a DMG file 
     <p>
@@ -60,7 +60,7 @@ sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 
 1. Install Qt (takes about 15-25 min)
 
-    a. [http://download.qt.io/official\_releases/qt/5.14/5.14.2/qt-opensource-windows-x86-5.14.2.exe](http://download.qt.io/official_releases/qt/5.14/5.14.2/qt-opensource-windows-x86-5.14.2.exe) (2.3GB)
+    a. [https://www.qt.io/download-qt-installer) (2.3GB)
 
     b. Open when done downloading
 2. Follow instructions on the installer to create a new Qt account if you do not have one
@@ -88,7 +88,7 @@ sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 
 1. Install Qt (about 15-25 min)
 
-    a. [http://download.qt.io/official\_releases/qt/5.14/5.14.2/qt-opensource-linux-x64-5.14.2.run](http://download.qt.io/official_releases/qt/5.14/5.14.2/qt-opensource-linux-x64-5.14.2.run)
+    a. [https://www.qt.io/download-qt-installer)
 
     b. This assumes you are using a 64-bit machine. If you are on a 32-bit machine (you can run the Linux command arch in a terminal to check), let us know and we&#39;ll direct you to an older version of Qt that supports this.
 
