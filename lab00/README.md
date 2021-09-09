@@ -112,7 +112,7 @@ This semester, you will also be using Github Classroom for obtaining the project
 
 ## **Getting the Starter Code**
 
-1. Access the stencil code for our projects [here](https://classroom.github.com/a/8H4ZH5Rd). You&#39;ll see a screen like this if you haven&#39;t used GitHub Classroom before. Click **Authorize github**.
+1. Access the stencil code for our projects [here](https://classroom.github.com/a/jGhMdNNB). You&#39;ll see a screen like this if you haven&#39;t used GitHub Classroom before. Click **Authorize github**.
     <p>
     <img src="./images/image1.png" style="width:500px;">
     <p\>
