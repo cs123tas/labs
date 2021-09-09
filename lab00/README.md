@@ -26,7 +26,7 @@ Make sure you&#39;ve completed our [Getting Started](https://forms.gle/A1WaW3BsN
 ##
 ## Installing Qt/QtCreator
 
-Installing Qt is now optional (but still recommended) if you wish to use FastX as department machines have Qt pre-installed. See [https://piazza.com/class/kelk9xgdisb45o?cid=15](https://piazza.com/class/kelk9xgdisb45o?cid=15).
+Installing Qt is now optional (but still recommended) if you wish to use FastX as department machines have Qt pre-installed.
 
 ## **MacOS**
 
