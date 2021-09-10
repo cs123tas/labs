@@ -170,7 +170,7 @@ This semester, you will also be using Github Classroom for obtaining the project
 ##
 ## Getting the Labs Starter Code
 
-The labs starter code isn&#39;t part of Github Classroom as you won&#39;t be submitting it through Gradescope; you&#39;ll get them checked off either during lab hours (M 6-8pm, F 4-6pm) or any TA hours. After obtaining the labs starter code we&#39;ll walk you through QtCreator using Lab 0. You can get the labs starter code by opening up a terminal, cd-ing into your cs1230 folder (not your project-\&lt;github user\&gt; folder!) and running:
+The labs starter code isn&#39;t part of Github Classroom as you won&#39;t be submitting it through Gradescope; you&#39;ll get them checked off either during lab hours (M 2-4pm, Th 7-9 pm) or any TA hours. After obtaining the labs starter code we&#39;ll walk you through QtCreator using Lab 0. You can get the labs starter code by opening up a terminal, cd-ing into your cs1230 folder (not your project-\&lt;github user\&gt; folder!) and running:
 
 git clone https://github.com/cs123tas/labs.git
 
