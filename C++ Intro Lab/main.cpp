@@ -136,7 +136,7 @@ void twoDimArray()
     int c = 4;
 
     //  TODO (task 19): Index into the 2D array and
-    //        return the value at row r and col c
+    //        print the value at row r and col c
 
 }
 
@@ -158,7 +158,7 @@ void oneDimArrayAsTwoDimArray()
     int c = 4;
 
     //  TODO (task 20): Index into the 1D array as if it was
-    //        a 2D array and return the value at
+    //        a 2D array and print the value at
     //        row r and col c
 
 
