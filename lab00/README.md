@@ -102,7 +102,7 @@ sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
     <img src="./images/image5.png" style="width:500px;">
     <p\>
 4. Continue and finish the installation process.
-5. If you are on Ubuntu or other Debian-based Linux systems, run sudo apt-get install build-essential libgl1-mesa-dev to install minimum development tools, such as the GNU gcc compiler and _make_ program, and OpenGL
+5. If you are on Ubuntu or other Debian-based Linux systems, run `sudo apt-get install build-essential libgl1-mesa-dev libglu1-mesa-dev` to install minimum development tools, such as the GNU gcc compiler and _make_ program, and OpenGL
 6. We&#39;ll provide an example on how to open, configure and run a Qt project later on in this guide.
 
 ##
