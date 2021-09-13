@@ -228,7 +228,7 @@ Using the `increment` function, increment `sqr->sideLength` by 5 by giving our i
 ```cpp
 increment(&(sqr->sideLength), 5);
 ```
-Then uncomment the statements that print out the the area of `sqr`.
+Then uncomment the statements that print out the area of `sqr`.
 
 Go down to the bottom main function and uncomment out the `smartPointers()` call. If you have done everything correctly, you should see the output:
 ```
