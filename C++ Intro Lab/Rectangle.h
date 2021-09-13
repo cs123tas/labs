@@ -19,7 +19,7 @@ class Rectangle : public Shape
 
 
     //declaration of the funtion set_values
-    void set_values (int,int);
+    void set_values(int, int);
 
     //declaration and definition of area
     //function which retruns the area of

@@ -12,7 +12,7 @@ public:
 
     int sideLength;
 
-    void set_values (int);
+    void set_side_length(int);
 
     int area()
     {

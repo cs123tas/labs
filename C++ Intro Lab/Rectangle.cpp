@@ -23,7 +23,7 @@
 //  TODO (task 7): Write the definition to the member function set_values
 //        such that it takes in integers w and h
 //        then sets the member variables width and height accordingly
-void Rectangle::set_values (int w,int h)
+void Rectangle::set_values(int w, int h)
 {
 
 }
