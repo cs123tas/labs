@@ -20,7 +20,7 @@ git clone https://github.com/cs123tas/labs.git
 ```
 Open Qt Creator and select "Open Project" and find the `lab01.pro` file in your lab01 directory.
 
-On the Configure Project screen, make sure Desktop is selected and select "Configure Project." Once everything is configured, go to the Projects menu on the left and make sure that the "Shadow build" option is **not** checked.
+On the Configure Project screen, make sure Desktop is selected and select "Configure Project." Once everything is configured, go to the Projects menu on the left and make sure that the "Shadow build" option is **not** checked. In addition, you may want to uncheck "Run in terminal" (Build & Run -> Run -> Run -> Working directory -> Run in terminal). This will run our program in Qt Creator's terminal rather than opening your native one.
 
 While there is also a demo version of the lab that can be run by inputting `cs1230_lab01_demo` into your terminal on the department machine through FastX3, there are images along the way that should be sufficient for this lab. See [this link](https://cs.brown.edu/about/system/connecting/fastx/) on how to access department machines through FastX3.
 
