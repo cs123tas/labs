@@ -213,25 +213,25 @@ int main()
 
 
 //    helloWorld();
-//    std::cout << std::endl;
+
 
 //    pointerFunctionInt();
-//    std::cout << std::endl;
+
 
 //    pointerFunctionRect();
-//    std::cout << std::endl;
+
 
 //    smartPointers();
-//    std::cout << std::endl;
+
 
 //    twoDimArray();
-//    std::cout << std::endl;
+
 
 //    oneDimArrayAsTwoDimArray();
 //    std::cout << std::endl;
 
 //    inheritanceArray();
-//    std::cout << std::endl;
+
 
 
 
