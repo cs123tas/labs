@@ -1,5 +1,5 @@
 
-# Lab 8: Particles
+# Lab 9: Particles
 
 ![](images/image13.png)
 
