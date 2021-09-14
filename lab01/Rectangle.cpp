@@ -3,6 +3,12 @@
 
 
 
+
+//  TODO (task 4): Write an area function that returns
+//        the area of rectangle given width
+//        and height
+
+
 //  TODO (task 5): Write the definition of the constructor
 //                 which is run at the creation of a rectangle
 //                 object and is used to set the defaults of

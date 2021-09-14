@@ -21,15 +21,9 @@ class Rectangle : public Shape
     //declaration of the funtion set_values
     void set_values(int, int);
 
-    //declaration and definition of area
-    //function which retruns the area of
-    // the rectangle
-    int area()
-    {
-        //  TODO (task 4): Write a function that returns
-        //        the area of rectangle given width
-        //        and height
-    }
+
+    int area();
+
 };
 
 #endif // RECTANGLE_H

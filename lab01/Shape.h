@@ -9,7 +9,7 @@ public:
     virtual ~Shape();
 
     virtual int area();
-    //virtual void set_values();
+
 };
 
 #endif // SHAPE_H

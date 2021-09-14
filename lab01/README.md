@@ -88,11 +88,11 @@ Next, we will be using the `Rectangle` class which is a child of the `Shape` cla
 
 #### ***Task 4:***
 
-In the header file `Rectangle.h`, write a function that returns the area of a rectangle given its member variables `width` and `height`.
+Now head on over to the file `Rectangle.cpp`, write a function that returns the area of a rectangle given its member variables `width` and `height`.
 
 #### ***Task 5:***
 
-Now head on over to the file `Rectangle.cpp`. There we are going to write the definition of the _constructor_, which is run at the creation of a `Rectangle` object and is used to set the defaults of member variables and more.
+Next we are going to write the definition of the _constructor_, which is run at the creation of a `Rectangle` object and is used to set the defaults of member variables and more.
 
 - A basic constructor will have the form
 ```cpp
@@ -170,11 +170,11 @@ Now, moving on into our next function, we will be using the `Square` class which
 
 #### ***Task 12:***
 
-In `Square.h`, fill out the `area()` function that returns the area of a `Square` using only the member variable `sideLength`.
+In `Square.cpp`, fill out the `area()` function that returns the area of a `Square` using only the member variable `sideLength`.
 
 #### ***Task 13:***
 
-In `Square.cpp`, write the definition of the constructor for the `Square` subclass. Make sure to set its member variable `sideLength` to zero in the member initializer list as we did in Task 5.
+Now write the definition of the constructor for the `Square` subclass. Make sure to set its member variable `sideLength` to zero in the member initializer list as we did in Task 5.
 
 #### ***Task 14:***
 

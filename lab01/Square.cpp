@@ -2,6 +2,10 @@
 #include <iostream>
 
 
+//  TODO (task 12): Write an area function that returns
+//        the area of square given its sideLength
+
+
 //  TODO (task 13): Write the definition of the constructor
 //                 which is run at the creation of a square
 //                 object and is used to set the defaults of

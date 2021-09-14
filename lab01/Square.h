@@ -14,11 +14,7 @@ public:
 
     void set_side_length(int);
 
-    int area()
-    {
-        //  TODO (task 12): Write a function that returns
-        //        the area of square given its sideLength
-    }
+    int area();
 
 };
 
