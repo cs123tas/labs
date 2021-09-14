@@ -30,8 +30,7 @@ protected:
 private:
     Ui::MainWindow *m_ui;
     QList<DataBinding *> m_bindings;
-    GLWidget *m_lab2Canvas;
-    GLWidget *m_lab3Canvas;
+    GLWidget *m_glWidget;
 
     void dataBind();
 };

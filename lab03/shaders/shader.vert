@@ -1,12 +1,16 @@
-#version 330 core
+#version 330
 
-layout(location = 0) in vec3 ObjectSpace_position; // object-space vertex position
-layout(location = 1) in vec3 ObjectSpace_normal;   // object-space vertex normal
+layout(location = 0) in vec3 position;
 
-uniform mat4 model, view, projection;
-
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 perspective;
 
 void main() {
+    gl_Position = vec4(position, 1.0);
+    // TODO: Add 0.5 to gl_Position.y (Task 2)
 
-    gl_Position = projection * view * model * vec4(ObjectSpace_position, 1.0);
+    // TODO: Transform gl_Position using the model matrix uniform (Task 3)
+
+    // TODO: Transform the position using all three matrix uniforms. (Task 4)
 }

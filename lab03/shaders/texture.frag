@@ -1,7 +1,9 @@
 #version 400
 in vec2 uv;
-// TODO (Task 8): Declare a sampler2D uniform
 out vec4 color;
+
+// TODO: Declare a sampler2D uniform (Task 15)
+
 void main(){
-    // TODO (Task 8): Set the output color to the corresponding texel
+    // TODO: Set the output color to the corresponding texel (Task 15)
 }

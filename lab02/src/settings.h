@@ -4,12 +4,11 @@
 #include <QObject>
 
 // Enumeration values for the shapes from which the user can choose in the GUI.
-enum ShaderProgramSetting
-{
-    SOLID_SHADER_PROGRAM,
-    GRADIENT_SHADER_PROGRAM,
-    TEXTURE_SHADER_PROGRAM,
-    NUM_SHADER_PROGRAMS
+enum Shape {
+    SHAPE_TRIANGLE,
+    SHAPE_TRIANGLE_STRIP,
+    SHAPE_TRIANGLE_FAN,
+    NUM_SHAPES
 };
 
 /**
@@ -30,7 +29,8 @@ struct Settings {
     // Saves the current settings to disk.
     void saveSettings();
 
-    int shaderProgram;          // The currently selected shape.
+    int shape;          // The currently selected shape.
+    bool linesEnabled;  // Enable or disable drawing only lines.
 };
 
 // The global Settings object, will be initialized by MainWindow

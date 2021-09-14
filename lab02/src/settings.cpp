@@ -11,11 +11,13 @@ Settings settings;
 **/
 void Settings::loadSettingsOrDefaults() {
     // Set the default values below
-    QSettings s("CS123, Lab03");
-    shaderProgram = s.value("fillMode", SOLID_SHADER_PROGRAM).toInt();
+    QSettings s("CS123", "Lab01");
+    shape = s.value("shape", SHAPE_TRIANGLE).toInt();
+    linesEnabled = s.value("linesEnabled", false).toBool();
 }
 
 void Settings::saveSettings() {
-    QSettings s("CS123, Lab03");
-    s.setValue("fillMode", shaderProgram);
+    QSettings s("CS123", "Lab01");
+    s.setValue("shape", shape);
+    s.setValue("linesEnabled", linesEnabled);
 }

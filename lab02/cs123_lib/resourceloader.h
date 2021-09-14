@@ -3,7 +3,8 @@
 
 #include "GL/glew.h"
 
-class ResourceLoader {
+class ResourceLoader
+{
 public:
     ResourceLoader();
     static GLuint createShaderProgram(const char * vertex_file_path,const char * fragment_file_path);

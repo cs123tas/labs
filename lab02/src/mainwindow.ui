@@ -11,105 +11,9 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Lab 2 - Shader programs</string>
+   <string>Lab 1 - OpenGL Basics</string>
   </property>
-  <widget class="QWidget" name="centralWidget">
-   <widget class="QTabWidget" name="tabWidget">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>621</width>
-      <height>381</height>
-     </rect>
-    </property>
-    <property name="currentIndex">
-     <number>1</number>
-    </property>
-    <widget class="QWidget" name="lab2">
-     <property name="text" stdset="0">
-      <string/>
-     </property>
-     <attribute name="title">
-      <string>Transformations / Vertex Shaders</string>
-     </attribute>
-     <widget class="QWidget" name="lab2Canvas" native="true">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>10</y>
-        <width>341</width>
-        <height>331</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="lab3">
-     <attribute name="title">
-      <string>Fragment Shaders</string>
-     </attribute>
-     <widget class="QGroupBox" name="shaderProgram">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>0</y>
-        <width>141</width>
-        <height>131</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>Shader Program</string>
-      </property>
-      <widget class="QWidget" name="verticalLayoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>30</y>
-         <width>91</width>
-         <height>86</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QRadioButton" name="solidShader">
-          <property name="text">
-           <string>Solid</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="gradientShader">
-          <property name="text">
-           <string>&amp;Gradient</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="textureShader">
-          <property name="text">
-           <string>Te&amp;xture</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-     <widget class="QWidget" name="lab3Canvas" native="true">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>10</y>
-        <width>331</width>
-        <height>331</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-   </widget>
-  </widget>
+  <widget class="QWidget" name="centralWidget"/>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
@@ -126,6 +30,95 @@
     <addaction name="actionQuit"/>
    </widget>
    <addaction name="menuFile"/>
+  </widget>
+  <widget class="QDockWidget" name="settingsDock">
+   <property name="minimumSize">
+    <size>
+     <width>160</width>
+     <height>211</height>
+    </size>
+   </property>
+   <property name="features">
+    <set>QDockWidget::DockWidgetMovable</set>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="settingsDockContent">
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <layout class="QVBoxLayout" name="settingsLayout">
+     <item>
+      <widget class="QGroupBox" name="shapeGroupBox">
+       <property name="title">
+        <string>Shape</string>
+       </property>
+       <widget class="QRadioButton" name="shapeTriangle">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>140</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Triangle</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="shapeTriangleFan">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>90</y>
+          <width>140</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Triangle fan</string>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="shapeTriangleStrip">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>60</y>
+          <width>140</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Triangle strip</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="linesEnabled">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>120</y>
+          <width>151</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Draw lines</string>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <action name="actionQuit">
    <property name="text">

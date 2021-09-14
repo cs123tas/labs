@@ -1,3 +1,10 @@
+/*!
+   @file   Databinding.h
+   @author Evan Wallace (evan.exe@gmail.com)
+   @author Ben Herila (ben@herila.net)
+   @date   Fall 2010
+*/
+
 #ifndef DATABINDING_H
 #define DATABINDING_H
 
@@ -10,9 +17,7 @@
 #include <QRadioButton>
 #include <QDockWidget>
 #include <QTabWidget>
-#include <QColor>
 #include <QDial>
-#include <QPushButton>
 
 /*!
 
@@ -39,72 +44,55 @@ signals:
 
 /*!
 
-@class FloatBinding
-@brief Binds a slider and a textbox to a float.
+@class BoolBinding
+@brief Binds a checkbox to a Boolean value.
 
-This class binds a slider and a textbox to a float, so when either the slider or the textbox
-is changed, the other is also changed and the float is updated with the new value.  This does
-not update either the slider or the textbox when the float is set to a new value.
+This class binds a checkbox to a bool, so when the checkbox is changed the bool is updated
+with the new value.  This does not update the checkbox when the bool is set to a new value.
 
 **/
-class FloatBinding : public DataBinding {
+class BoolBinding : public DataBinding {
     Q_OBJECT
 public:
-    virtual ~FloatBinding() {}
+    virtual ~BoolBinding() {}
 
-    static FloatBinding* bindSliderAndTextbox(
-            QSlider *slider, QLineEdit *textbox, float &value, float minValue, float maxValue);
+    static BoolBinding* bindCheckbox(QCheckBox *checkbox, bool &value);
+    static BoolBinding* bindDock(QDockWidget *dock, bool &value);
 
 private slots:
-    void intChanged(int newValue);
-    void stringChanged(QString newValue);
-
-signals:
-    void updateInt(int newValue);
-    void updateString(QString newValue);
+    void boolChanged(bool newValue);
 
 private:
-    FloatBinding(float &value) :
-        DataBinding(), m_value(value), m_maxValue(0), m_minValue(0), m_offset(0),
-        m_wrappingExtendsRange(false) {}
+    BoolBinding(bool &value) : DataBinding(), m_value(value) {}
 
-    float &m_value, m_maxValue, m_minValue, m_offset;
-    bool m_wrappingExtendsRange;
+    bool &m_value;
 };
 
 /*!
 
-@class ColorBinding
-@brief Binds a button and three textboxes to a QColor.
+@class ChoiceBinding
+@brief Binds a group of radio buttons to an int (enum) value.
+
+This class binds a group of radio buttons to an int, so when a radio button is clicked the
+int is updated with the index of the currently checked button in the group.  This does not
+update the radio buttons when the int is set to a new value.
 
 **/
-class ColorBinding : public DataBinding {
+class ChoiceBinding : public DataBinding {
     Q_OBJECT
 public:
-    virtual ~ColorBinding() {}
+    virtual ~ChoiceBinding() {}
 
-    static ColorBinding* bindButtonAndTextboxes(
-            QPushButton *button, QLineEdit *rTextbox, QLineEdit *gTextbox, QLineEdit *bTextbox,
-            QColor &value);
+    static ChoiceBinding* bindRadioButtons(int numRadioButtons, int &value, ...);
+    static ChoiceBinding* bindTabs(QTabWidget *tabs, int &value);
 
 private slots:
-    void buttonPushed();
-    void rStringChanged(QString newValue);
-    void gStringChanged(QString newValue);
-    void bStringChanged(QString newValue);
-
-signals:
-    void updateRString(QString newValue);
-    void updateGString(QString newValue);
-    void updateBString(QString newValue);
+    void intChanged(int newValue);
 
 private:
-    void updateButtonColor();
+    ChoiceBinding(int &value) : DataBinding(), m_value(value) {}
 
-    ColorBinding(QColor &value, QPushButton *button) :
-        DataBinding(), m_value(value), m_button(button) {}
-    QColor &m_value;
-    QPushButton *m_button;
+    int &m_value;
 };
 
 #endif // DATABINDING_H

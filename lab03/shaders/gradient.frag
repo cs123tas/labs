@@ -1,10 +1,9 @@
 #version 400
-// TODO (Task 5): Make a new in vec3 with the same name as the vertex shader's output
+// TODO: Make a new in vec3 with the same name as the vertex shader's output (Task 12)
 
 out vec3 fragColor;
 
 void main(){
     fragColor = vec3(1.0);
-    // TODO (Task 5): Set fragColor to a color input variable.
-
+    // TODO: Set fragColor to the color input variable. (Task 12)
 }
