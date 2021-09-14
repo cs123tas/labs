@@ -1,4 +1,4 @@
-# Lab #5 — Terrain
+# Lab #2 — Terrain
 
 ![Computer-generated mountainous terrain](img/0000.png)
 
