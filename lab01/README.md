@@ -14,7 +14,13 @@ C++ was developed by Danish computer scientist Bjarne Stroustrup at Bell Labs in
 
 ## Getting Started
 
-If you have already cloned the lab repo locally during labs before, navigate into `~/course/cs1230/labs` (wherever you cloned the lab repository). Otherwise you can get the labs starter code by opening up a terminal and running:
+If you have already cloned the lab repo locally during labs before, navigate into `~/course/cs1230/labs` (wherever you cloned the lab repository) and run the command 
+```
+git pull origin master
+```
+To get the most up to date version of lab01!
+
+Otherwise you can get the labs starter code by opening up a terminal and running:
 ```
 git clone https://github.com/cs123tas/labs.git
 ```
