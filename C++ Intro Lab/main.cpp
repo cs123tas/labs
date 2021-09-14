@@ -48,11 +48,11 @@ void pointerFunctionRect()
 
 
 
-    int i = 10;
-    int l = 10;
+    int w = 10;
+    int h = 10;
 
     //  TODO (task 9): Set the values of the rectangle rec to
-    //        j and k as width and height respectively
+    //        w and h as width and height respectively
     //        NOTE! Use an arrow instead of . as rec is
     //        a pointer to the object and not an object;
     //        If rec were an object member functions would
@@ -81,32 +81,25 @@ void pointerFunctionRect()
 
 void smartPointers()
 {
-    //  TODO (task 16): Create a SMART! pointer to a Rectangle object
+    //  TODO (task 16): Create a SMART! pointer to a Square object
 
 
-    //using two seperate ints and pointers to those ints
-    //is will make the program act how you would expect as
-    //if k = &i, when we increment height or width it would
-    //also increase the other as we increase what those pointers
-    //point to and that would be the same.
     int i = 10;
 
-    //  TODO (task 17): Set the values of the square sqr to i
+    //  TODO (task 17): Set the side length of the square sqr to i
     //
-    //        NOTE! Use an arrow instead of . as rec is
-    //        a pointer to the object and not an object;
-    //        If rec were an object member functions would
-    //        be accessed by a .
+    //        NOTE! As before, use an arrow -> instead of a period
+    //        to access sqr's member variables and functions.
 
 
-    /* uncomment this after step 15
+    /* uncomment this after step 18
     std::cout << "before length increment = " << sqr->area() << std::endl;
     */
 
-    //  TODO (task 18): Using the increment function and the pointer rec->height,
-    //        increment rec->height by 5, from 10 to 15
+    //  TODO (task 18): Using the increment function and sqr->sideLength,
+    //        increment sqr->sideLength by 5, from 10 to 15
 
-    /* uncomment this after step 15
+    /* uncomment this after step 18
     std::cout << "after length increment = " << sqr->area() << std::endl;
     */
 
@@ -118,8 +111,8 @@ void smartPointers()
 
 void twoDimArray()
 {
-    //this is an array where every object is an array
-    //of dimension 10x10
+    // this is an array of length 10 where every element
+    // is also an array of length 10
     int j[10][10];
     int count = 0;
 
@@ -172,19 +165,18 @@ void inheritanceArray()
     //                 both rectangles and squares
 
 
-    /* uncomment this after step 20
+    /* uncomment this after step 21
     Rectangle* a = new Rectangle;
     Square* b = new Square;
     Rectangle* c = new Rectangle;
 
-    a->set_values(5,6);
-    b->set_values(4);
-    c->set_values(2,5);
+    a->set_values(5, 6);
+    b->set_side_length(4);
+    c->set_values(2, 5);
     */
 
     //  TODO (task 22): Fill shapeArray with
     //                  a, b, and c
-
 
 
 

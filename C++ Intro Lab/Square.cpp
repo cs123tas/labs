@@ -21,7 +21,7 @@
 
 
 
-void Square::set_values(int x)
+void Square::set_side_length(int x)
 {
     //  TODO (task 15): Write a function that sets the
     //                  member variable sideLength
