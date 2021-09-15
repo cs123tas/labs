@@ -226,7 +226,7 @@ In the function `smartPointers()`, create a smart pointer to a `Square` object u
 
 #### ***Task 17:***
 
-Using `sqr->set_Side_Length()`, set the side length of the `Square` that `sqr` points at to `i`. As before, we use an arrow to access the actual `Square` object's member functions, rather than a `.`
+Using `sqr->set_side_length()`, set the side length of the `Square` that `sqr` points at to `i`. As before, we use an arrow to access the actual `Square` object's member functions, rather than a `.`
 
 #### ***Task 18:***
 
