@@ -256,7 +256,7 @@ If you wanted the object in the 2D array `arr` in the second row and fourth colu
 
 ***Task 19:***
 
-Index into the 2D array `j` and return the value at row `r` and col `c`.
+Index into the 2D array `j` and print the value at row `r` and col `c`.
 
 At this point we can run our program!!! Go down to the bottom main function and uncomment out the `twoDimArray()` call. If you have done everything correctly you should see the output:
 ```
@@ -272,7 +272,7 @@ We will use row-major order. To do this we will use `j[width * r + c]`, where `w
 
 #### ***Task 20:***
 
-Index into the 1D array as if it were a 2D array and return the value at row `r` and col `c`.
+Index into the 1D array as if it were a 2D array and print the value at row `r` and col `c`.
 
 At this point we can run our program!!! Go down to the bottom main function and uncomment out the `oneDimArrayAsTwoDimArray()` call. If you have done everything correctly you should see the same output,
 ```
