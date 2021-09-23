@@ -41,7 +41,7 @@ You may get checked off for this lab at this point, but you **must** finish the 
 Now, you are ready to implement the `static Scene::parse()` method in our project code.
 
 ### What `Scene::parse()` should do
-When a scene file is opened, the support code (in `loadSceneviewSceneFromParser()` method in `SupportCanvas3D` class) instantiates a new `SceneviewScene` (a subclass of`Scene`) and calls the static `cene::parse()` method, passing the newly created `SceneviewScene` and an instance of the `CS123ISceneParser`. At this point, the support code has already parsed the xml scene file, so you may assume that you can get all the necessary information in the scene file from the `CS123ISceneParser` instance. For instance, you can get the root node of the scene graph using `parser->getRootNode()`. Refer to `CS123SceneData.h`to learn how our projects represent scene data. 
+When a scene file is opened, the support code (in `loadSceneviewSceneFromParser()` method in `SupportCanvas3D` class) instantiates a new `SceneviewScene` (a subclass of`Scene`) and calls the static `Scene::parse()` method, passing the newly created `SceneviewScene` and an instance of the `CS123ISceneParser`. At this point, the support code has already parsed the xml scene file, so you may assume that you can get all the necessary information in the scene file from the `CS123ISceneParser` instance. For instance, you can get the root node of the scene graph using `parser->getRootNode()`. Refer to `CS123SceneData.h`to learn how our projects represent scene data. 
 
 In `Scene::parse()`, you should set up the global data for the scene, as well as the lighting. You should also traverse the parse tree and add all the objects in the parse tree to your scene. You do not need to set up the camera in this method; this is already handled for you in the support code. 
 
@@ -61,10 +61,13 @@ In `Scene::parse()`, load light data from the input `CS123ISceneParser` instance
 In `Scene::parse()`, load object data from the input `CS123ISceneParser` instance to the input `Scene` instance. After loading the data, you should be able to efficiently keep track of which transformation matrix should be applied to which primitive object. Apply what you learned in **Task 4**. If necessary, add relevant member variable(s) to Scene class.
 
 ## Is Our Parser Correct?
-Before you finish implementing Intersect, it is difficult to visually check if our parser works correctly. However, one possible way to check if our parser works well is to write a Scene method that prints out all or some of the parsed information. You may write a small scene file with a simple scene graph and check if the parsed result is what you expected. For instance, you may check if the light position, global data, and primitive objects with their corresponding transformation matrices are correctly loaded.
+Before you finish implementing Intersect, it is difficult to visually check if our parser works correctly. However, one possible way to check if our parser works well is to write a `Scene` method that prints out all or some of the parsed information. You may write a small scene file with a simple scene graph and check if the parsed result is what you expected, or you may use the [example.xml](example.xml) file provided. For instance, you may check if the light position, global data, and primitive objects with their corresponding transformation matrices are correctly loaded.
 
-#### *Task 8 (Optional, but Helpfull):*
-Implement a printing method and open a simple scene file to check if your parser works properly. To open a scene file, use File > Open on the menu bar of our application.
+#### *Task 8 (Optional, but Helpful):*
+Write a simple scene file or choose to use the example scene file. Compute the expected result when your parser parses your scene file. (**Hint**: The scene graph of the example.xml can be visualized as the tree diagram in **Task 3**)
+
+#### *Task 9 (Optional, but Helpful):*
+Implement a printing method that prints the parsed information. Call the printing method at the end of `Scene::parse()`. Open the scene file in *Task 8* (To open a scene file, use File > Open on the menu bar of our application.) to check if your parser does what you expected.
 
 
 
