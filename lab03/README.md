@@ -1,7 +1,7 @@
 # Lab 03 — Transformations & Scene Graphs
 
 ## Intro
-In this Lab, you’ll learn what scene graphs are and how to parse them. You will implement a scene file parser, namely `Scene::parse` method, in your Intersect code. Ideally, you will be able to reuse `Scene::parse` in Ray and Sceneview without having to make any modifications.
+In this Lab, you’ll learn what scene graphs are and how to parse them. You will implement a scene file parser, namely `Scene::parse` method, in your project code. Ideally, you will be able to reuse `Scene::parse` in Intersect, Ray and Sceneview assignments without having to make any modifications.
 
 ## Understanding Scene Graphs
 In order to visualize a complex 3-dimensional scene, thousands of tiny triangles must be drawn to the screen. It would be senseless to require the manual placement of each one of these triangles; instead, we usually define the scene in terms of the various primitives that compose it. Even better, we allow for primitives to be grouped, and then we reference those groups as user-defined primitives. Since such groupings can be nested, our representation of objects in a scene will form a directed acyclic graph, which we will call **scene graph**.
@@ -64,10 +64,10 @@ In `Scene::parse()`, load object data from the input `CS123ISceneParser` instanc
 Before you finish implementing Intersect, it is difficult to visually check if our parser works correctly. However, one possible way to check if our parser works well is to write a `Scene` method that prints out all or some of the parsed information. You may write a small scene file with a simple scene graph and check if the parsed result is what you expected, or you may use the [example.xml](example.xml) file provided. For instance, you may check if the light position, global data, and primitive objects with their corresponding transformation matrices are correctly loaded.
 
 #### *Task 8 (Optional, but Helpful):*
-Write a simple scene file or choose to use the example scene file. Compute the expected result when your parser parses your scene file. (**Hint**: The scene graph of the example.xml can be visualized as the tree diagram in **Task 3**)
+Write a simple scene file, or choose to use or simplify [example.xml](example.xml). Compute the expected result when your parser parses your scene file. (**Hint**: The scene graph of [example.xml](example.xml) can be visualized as the tree diagram in **Task 3**)
 
 #### *Task 9 (Optional, but Helpful):*
-Implement a printing method that prints the parsed information. Call the printing method at the end of `Scene::parse()`. Open the scene file in *Task 8* (To open a scene file, use File > Open on the menu bar of our application.) to check if your parser does what you expected.
+Implement a printing method that prints the parsed information. Call the printing method at the end of `Scene::parse()`. Open the scene file in **Task 8** (To open a scene file, use `File > Open` on the menu bar of our application.) to check if your parser does what you expected.
 
 
 
