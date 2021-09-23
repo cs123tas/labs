@@ -6,6 +6,10 @@
 		<transparentcoeff v="0.35"/>
 	</globaldata>
 
+	<cameradata>
+		<pos x="10" y="10" z="10"/>
+	</cameradata>
+
 	<lightdata>
 		<id v="0"/>
 		<color r="1" g="1" b="1"/>
