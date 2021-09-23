@@ -6,7 +6,7 @@ In this Lab, you’ll learn what scene graphs are and how to parse them. You wil
 ## Understanding Scene Graphs
 In order to visualize a complex 3-dimensional scene, thousands of tiny triangles must be drawn to the screen. It would be senseless to require the manual placement of each one of these triangles; instead, we usually define the scene in terms of the various primitives that compose it. Even better, we allow for primitives to be grouped, and then we reference those groups as user-defined primitives. Since such groupings can be nested, our representation of objects in a scene will form a directed acyclic graph, which we will call **scene graph**.
 
-Throughout this course, we will use a CSCI1230-specific scene file format to describe a scene. Our scene file contains necessary information of a scene, namely global data, camera data, light data, and object data. You should refer to [this document](http://cs.brown.edu/courses/cs123/archive/2020/docs/scenefile.pdf) to understand scene files and scene graphs in detail.
+Throughout this course, we will use a CSCI1230-specific scene file format to describe a scene. Our scene file contains necessary information of a scene, namely global data, camera data, light data, and object data. You should refer to [this document](https://github.com/cs123tas/docs/blob/master/2021/scenefile.pdff) to understand scene files and scene graphs in detail.
 
 Now, work on the following exercises!
 
@@ -63,7 +63,7 @@ In `Scene::parse()`, load object data from the input `CS123ISceneParser` instanc
 ## Is Our Parser Correct?
 Before you finish implementing Intersect, it is difficult to visually check if our parser works correctly. However, one possible way to check if our parser works well is to write a Scene method that prints out all or some of the parsed information. You may write a small scene file with a simple scene graph and check if the parsed result is what you expected. For instance, you may check if the light position, global data, and primitive objects with their corresponding transformation matrices are correctly loaded.
 
-#### *Task 8 (Really Optional, but Helpful):*
+#### *Task 8 (Optional, but Helpfull):*
 Implement a printing method and open a simple scene file to check if your parser works properly. To open a scene file, use File > Open on the menu bar of our application.
 
 
