@@ -9,6 +9,20 @@ This week’s part of this lab will focus on 2D graphics in OpenGL, including ho
 
 In this lab specifically, you will learn how to create **Vertex Buffer Objects** (VBOs) and **Vertex Array Objects** (VAOs) which will in turn be used to draw triangle primitives (defined below). Code written in this lab will also be used in later labs and projects.
 
+## Getting Started
+========
+
+Since you have probably already cloned the lab repo locally during previous labs, navigate into `~/course/cs1230/labs` (wherever you cloned the lab repository) and run the command 
+```
+git pull origin master
+```
+To get the most up to date version of lab05!
+
+Otherwise if you need to reclone the directory from scratch you can get the labs starter code by opening up a terminal and running:
+```
+git clone https://github.com/cs123tas/labs.git
+```
+
 ## Intro
 =====
 
