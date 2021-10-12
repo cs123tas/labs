@@ -1,8 +1,6 @@
-# -------------------------------------------------
-# Project created by QtCreator 2010-08-22T14:12:19
-# -------------------------------------------------
-QT += opengl gui
-TARGET = lab4
+QT += core gui opengl
+
+TARGET = lab5
 TEMPLATE = app
 
 QMAKE_CXXFLAGS += -std=c++14
@@ -15,8 +13,6 @@ unix:!macx {
 macx {
     QMAKE_CFLAGS_X86_64 += -mmacosx-version-min=10.7
     QMAKE_CXXFLAGS_X86_64 = $$QMAKE_CFLAGS_X86_64
-    QMAKE_LFLAGS += -stdlib=libc++
-    QMAKE_CXXFLAGS += -stdlib=libc++
     CONFIG += c++11
 }
 win32 {
@@ -24,40 +20,54 @@ win32 {
     LIBS += -lopengl32 -lglu32
 }
 
-SOURCES += \
-    ui/Canvas2D.cpp \
-    ui/SupportCanvas2D.cpp \
-    ui/Settings.cpp \
-    ui/mainwindow.cpp \
-    ui/Databinding.cpp \
-    main.cpp \
-    filter/Filter.cpp \
-    filter/FilterGray.cpp \
-    filter/FilterInvert.cpp \
-    filter/FilterIdentity.cpp \
-    filter/FilterShift.cpp \
-    filter/FilterUtils.cpp \
-    lib/RGBA.cpp
+INCLUDEPATH += src cs123_lib ../glew-1.10.0/include
+DEPENDPATH += src cs123_lib ../glew-1.10.0/include
+
+SOURCES += src/settings.cpp \
+    src/glfragwidget.cpp \
+    src/mainwindow.cpp \
+    src/main.cpp \
+    src/glwidget.cpp \
+    src/databinding.cpp \
+    cs123_lib/resourceloader.cpp \
+    src/openglshape.cpp \
+    src/gl/datatype/VBO.cpp \
+    src/gl/datatype/VBOAttribMarker.cpp \
+    src/gl/datatype/VAO.cpp \
+    src/gl/datatype/IBO.cpp \
+    src/gl/GLDebug.cpp \
+    ../glew-1.10.0/src/glew.c
+
 
 HEADERS += \
-    ui/Canvas2D.h \
-    ui/SupportCanvas2D.h \
-    ui/Settings.h \
-    ui/mainwindow.h \
-    ui/Databinding.h \
-    ui_mainwindow.h \
-    filter/Filter.h \
-    filter/FilterGray.h \
-    filter/FilterInvert.h \
-    filter/FilterIdentity.h \
-    filter/FilterShift.h \
-    filter/FilterUtils.h \
-    lib/RGBA.h
+    src/glfragwidget.h \
+    src/settings.h \
+    src/mainwindow.h \
+    src/glwidget.h \
+    src/databinding.h \
+    cs123_lib/resourceloader.h \
+    src/openglshape.h \
+    src/gl/datatype/VBO.h \
+    src/gl/datatype/VBOAttribMarker.h \
+    src/gl/datatype/VAO.h \
+    src/gl/datatype/IBO.h \
+    src/gl/shaders/ShaderAttribLocations.h \
+    src/gl/GLDebug.h \
+    ../glew-1.10.0/include/GL/glew.h \
+    src/sphere.h
 
-FORMS += ui/mainwindow.ui
+FORMS += src/mainwindow.ui
 
-INCLUDEPATH += lib ui filter
-DEPENDPATH += lib ui filter
+OTHER_FILES += \
+    shaders/solid.frag \
+    shaders/solid.vert \
+    shaders/gradient.frag \
+    shaders/gradient.vert \
+    shaders/texture.frag \
+    shaders/texture.vert \
+    shaders/shader.frag \
+    shaders/shader.vert
 
 RESOURCES += \
-    resources.qrc
+    shaders/shaders.qrc \
+    images/images.qrc
