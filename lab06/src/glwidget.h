@@ -5,11 +5,17 @@
 
 #include "GL/glew.h"
 #include <QGLWidget>
+#include <QTimer>
+#include "sphere.h"
+
+#define GLM_FORCE_RADIANS
+#include "glm/glm.hpp"            // glm::vec*, mat*, and basic glm functions
+#include "glm/gtx/transform.hpp"  // glm::translate, scale, rotate
+#include "glm/gtc/type_ptr.hpp" // glm::value_ptr
 
 class OpenGLShape;
 
-class GLWidget : public QGLWidget
-{
+class GLWidget : public QGLWidget {
     Q_OBJECT
 
 public:
@@ -17,28 +23,23 @@ public:
     ~GLWidget();
 
 protected:
-    /** This is called once, before any calls to paintGL. */
     void initializeGL();
-
-    /** This is called every time the window needs to be repainted. */
     void paintGL();
-
-    /** This is called every time the window is resized. */
     void resizeGL(int w, int h);
-
+    void mousePressEvent(QMouseEvent *e);
+    void mouseMoveEvent(QMouseEvent *e);
+    void wheelEvent(QWheelEvent *e);
 private:
-
-    void initializeTriangle();
-    void initializeStrip();
-    void initializeFan();
-
-    /** ID for the shader program. You'll learn about this in later labs. */
+    /** ID for the shader program. */
     GLuint m_program;
 
-    /** Vertex array objects for each of the three shapes in this lab. */
-    std::unique_ptr<OpenGLShape> m_triangle;
-    std::unique_ptr<OpenGLShape> m_strip;
-    std::unique_ptr<OpenGLShape> m_fan;
+    std::unique_ptr<OpenGLShape> m_sphere;
+    void rebuildMatrices();
+    glm::mat4 m_view, m_projection;
+
+    /** For mouse interaction. */
+    float m_angleX, m_angleY, m_zoom;
+    QPoint m_prevMousePos;
 };
 
 #endif // GLWIDGET_H

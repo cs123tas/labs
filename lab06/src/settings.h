@@ -2,14 +2,7 @@
 #define SETTINGS_H
 
 #include <QObject>
-
-// Enumeration values for the shapes from which the user can choose in the GUI.
-enum Shape {
-    SHAPE_TRIANGLE,
-    SHAPE_TRIANGLE_STRIP,
-    SHAPE_TRIANGLE_FAN,
-    NUM_SHAPES
-};
+#include <QColor>
 
 /**
 
@@ -29,8 +22,19 @@ struct Settings {
     // Saves the current settings to disk.
     void saveSettings();
 
-    int shape;          // The currently selected shape.
-    bool linesEnabled;  // Enable or disable drawing only lines.
+    float lightIntensity,
+          attQuadratic,
+          attLinear,
+          attConstant,
+          ambientIntensity,
+          diffuseIntensity,
+          specularIntensity,
+          shininess;
+
+    QColor lightColor;
+    QColor sphereLColor;
+    QColor sphereMColor;
+    QColor sphereRColor;
 };
 
 // The global Settings object, will be initialized by MainWindow
