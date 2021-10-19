@@ -6,7 +6,7 @@ Last week you learned how to draw 2D shapes in OpenGL using VBOs and VAOs, as we
 
 Specifically, we will use the three basic types of **transformations**: translation, scaling, and rotation.  We will also use **vertex shaders** to process each vertex individually before rendering. Fragment shaders, on the other hand, output a color for every pixel, aka “fragment.”
 
-# Getting Started
+## Getting Started
 
 Navigate into `~/course/cs1230/labs` (or wherever you cloned the lab repository) and run the command 
 ```
