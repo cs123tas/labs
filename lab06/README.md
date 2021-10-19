@@ -1,14 +1,12 @@
 # Lab 6 - 3D OpenGL (Transformations, Vertex Shaders & Phong Lighting)
 
 ## Prologue
-========
 
 Last week you learned how to draw 2D shapes in OpenGL using VBOs and VAOs, as well as use fragment shaders. In this lab, we will use OpenGL to draw a 3D scene with moving shapes and implement a phong shader!
 
 Specifically, we will use the three basic types of **transformations**: translation, scaling, and rotation.  We will also use **vertex shaders** to process each vertex individually before rendering. Fragment shaders, on the other hand, output a color for every pixel, aka “fragment.”
 
 ## Support Code
-============
 
 Take a look at GLVertWidget::initializeGLTransformationsVertexShaders(). This method is called in GLVertWidget::initializeGL(). Here we have initialized m\_sphere and m\_square. These are both unique\_ptrs to OpenGLShape, the class you implemented in Lab 5. We have included our implementation of OpenGLShape in this lab’s support code. Take a look for a refresher!
 
@@ -20,7 +18,6 @@ The sphere has a radius of 0.5 and is centered at the origin. The only thing lef
 *   Run your program. You should see a sphere!
 
 ## The Vertex Shader
-=================
 
 Let’s say instead of having the sphere in the center of the screen, we want to move it up along the y-axis.
 
@@ -82,8 +79,7 @@ Note: glUniform is a family of functions that have different names depending on 
 
 You may have noticed that the support code sets another uniform called “color” in paintGLTransformationsVertexShaders() . This is used by the **fragment shader** (which we covered last time) to assign the object’s color. Feel free to change that value to change the sphere’s color!
 
-Model, View, and Projection Matrices
-====================================
+## Model, View, and Projection Matrices
 
 We used a model matrix to transform an object from **object coordinates** (where the origin is at the center of the object) to **world coordinates** (where the origin is at another set location).
 
@@ -132,7 +128,6 @@ In order to render a scene with a perspective projection, we need gl\_Position t
 *   Your program should now show a smaller sphere, because the camera is farther away at (0, 1, 6).
 
 ## Drawing Multiple Shapes
-=======================
 
 Now let’s draw m\_square! We’ll assign it a different color so we can tell the difference between the sphere and the square.
 
@@ -183,7 +178,6 @@ Make your scene act like the demo as shown below! Here’s what the demo does:
 ![](images/image5.png)
 
 ## Part 2: Phong Lighting
-======================
 
 We will be writing a shader program that shows lighting on a sphere. We’ve set up 3 spheres for you on the Phong tab of the lab (you can probably guess what we used to position them based on what you did in the last part). The code for this is in GLWidget::paintGL if you would like to take a look.
 
