@@ -13,15 +13,15 @@ struct VBOAttribMarker {
 
     /**
      * @brief VBOAttribMarker
-     * @param index OpenGL handle to the attribute location. These are specified in ShaderAttribLocations.h
+     * @param name OpenGL handle to the attribute location. These are specified in ShaderAttribLocations.h
      * @param numElementsPerVertex Number of elements per vertex. Must be 1, 2, 3 or 4 (e.g. position = 3 for x,y,z)
      * @param offset Offset in BYTES from the start of the array to the beginning of the first element
      * @param type Primitive type (FLOAT, INT, UNSIGNED_BYTE)
      * @param normalize
      */
-    VBOAttribMarker(GLuint index, GLuint numElementsPerVertex, int offset, DATA_TYPE type = FLOAT, bool normalize = false);
+    VBOAttribMarker(GLuint name, GLuint numElementsPerVertex, int offset, DATA_TYPE type = FLOAT, bool normalize = false);
 
-    GLuint index;
+    GLuint name;
     DATA_TYPE dataType;
     DATA_NORMALIZE dataNormalize;
     GLuint numElements;

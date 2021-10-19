@@ -5,6 +5,8 @@
 #include <QList>
 #include "settings.h"
 #include "glwidget.h"
+#include "glvertwidget.h"
+
 
 namespace Ui {
     class MainWindow;
@@ -20,7 +22,6 @@ public:
     ~MainWindow();
 
 public slots:
-    // Used internally to keep data bindings and settings in sync.
     void settingsChanged();
 
 protected:
@@ -30,6 +31,7 @@ protected:
 private:
     Ui::MainWindow *m_ui;
     QList<DataBinding *> m_bindings;
+    GLVertWidget *m_vertCanvas;
     GLWidget *m_glWidget;
 
     void dataBind();
