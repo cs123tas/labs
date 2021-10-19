@@ -6,6 +6,19 @@ Last week you learned how to draw 2D shapes in OpenGL using VBOs and VAOs, as we
 
 Specifically, we will use the three basic types of **transformations**: translation, scaling, and rotation.  We will also use **vertex shaders** to process each vertex individually before rendering. Fragment shaders, on the other hand, output a color for every pixel, aka “fragment.”
 
+# Getting Started
+
+Navigate into `~/course/cs1230/labs` (or wherever you cloned the lab repository) and run the command 
+```
+git pull origin master
+```
+To get the most up to date version of lab06
+
+Otherwise if you need to reclone the directory from scratch you can get the labs starter code by opening up a terminal and running:
+```
+git clone https://github.com/cs123tas/labs.git
+```
+
 ## Support Code
 
 Take a look at GLVertWidget::initializeGLTransformationsVertexShaders(). This method is called in GLVertWidget::initializeGL(). Here we have initialized m\_sphere and m\_square. These are both unique\_ptrs to OpenGLShape, the class you implemented in Lab 5. We have included our implementation of OpenGLShape in this lab’s support code. Take a look for a refresher!
