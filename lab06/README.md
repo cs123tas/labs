@@ -268,7 +268,7 @@ In order to make the specular highlight small, we raise the dot product to an ex
 
 Add the specular component. Once again, ignore the light intensity for now:
 
-color \* lightColor \* specularIntensity \* (E • R)shininess.
+color \* lightColor \* specularIntensity \* (E • R)^shininess.
 
 Tips for computing the specular highlight:
 
@@ -290,7 +290,7 @@ The last thing we will add to our Phong model is **light attenuation**, which ma
 
 Multiply the diffuse and specular components by
 
-lightIntensity \* min(1 / (attConstant + attLinear \* d + attQuadratic \* d2), 1)
+lightIntensity \* min(1 / (attConstant + attLinear \* d + attQuadratic \* d^2), 1)
 
 where d is the distance from the surface point to the light.
 
