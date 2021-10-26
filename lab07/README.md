@@ -173,7 +173,7 @@ are in degrees. You should convert these values to radians before using them. (m
 such as sin, cos, tan expect radians, as do glm functions because of a line in CS123.pro that will
 #define GLM_FORCE_RADIANS.)<br />
 
-● glm::radians(degrees) converts degrees to radiansand returns the result.
+● glm::radians(degrees) converts degrees to radians and returns the result.
 
 ### Rotating the Camera
 
