@@ -1,10 +1,6 @@
 # Lab 6 - Camtrans
 
-
 ![](img/Capture1.png)
-
-     
-
 
 ## Prologue
 
@@ -37,7 +33,6 @@ For this assignment, you will be creating a camera object that provides the meth
 adjustments that one could perform on a camera. Once that has been completed, you will
 possess all the tools needed to handle displaying three-dimensional objects oriented in any way
 and viewed from any position.
-
 
 ![](img/Capture2.png)
 
@@ -147,7 +142,6 @@ p to the near plane, and **far** is the distance fromp to the farplane:
 
 ![](img/Capture3.png)
 
-
 Here **w** and **h** are the width and height of the sectionof the frustum on the far plane, which is a
 distance **far** away from the eye position. The **aspectratio** is the ratio of width to height:
 
@@ -233,26 +227,13 @@ provided are the ones used by the stencil code.</b><br />
 **projection matrix** , **perspective matrix** , **view matrix** , **rotation matrix** ,
 **translation matrix** and **scale matrix**.<br />
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ These methods should update their respective matrices with whatever current information we have saved in our 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;member variables. We will call them when we
-have made changes to the member variables pertaining to the 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matrix. This way we don’t have to think too hard about what to change about the matrix itself; it
-will just refresh it 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;entirely.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ These methods should update their respective matrices with whatever current information we have saved in our member variables. We will call them when we have made changes to the member variables pertaining to the matrix. This way we don’t have to think too hard about what to change about the matrix itself; it will just refresh it entirely.<br />
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ There are no **projection** and **view matrix** member variablesin the stencil code,
-so in theupdateProjectionMatrix() 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and updatViewMatrix() methods, you
-will need to call the update methods of the matrices that they are composed 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of. <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ There are no **projection** and **view matrix** member variablesin the stencil code, so in theupdateProjectionMatrix() and updatViewMatrix() methods, you will need to call the update methods of the matrices that they are composed of. <br />
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ For example, the projection matrix is composed of the scale and perspective
-transform, so this method should 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;call updateScaleMatrix() and
-updatePerspectiveMatrix().<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ For example, the projection matrix is composed of the scale and perspective transform, so this method should call updateScaleMatrix() and updatePerspectiveMatrix().<br />
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ Check out the algo to figure out what matrices should be updated when
-updateViewMatrix()is called.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ Check out the algo to figure out what matrices should be updated when updateViewMatrix()is called.<br />
 
 
 **Task 3 :**<br />
@@ -272,16 +253,11 @@ updateProjectionMatrix(). <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ How would you calculate the projection and view matrices from our matrix
 member variables? <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;■ **Remember from the algo** that there were four matrices which formed
-the full camera matrix? That final 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;camera matrix is just the product of the
-projection and view matrices. But which matrices belongs to which? <br />
+the full camera matrix? That final camera matrix is just the product of the projection and view matrices. But which matrices belongs to which? <br />
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;■ **Projection matrices** are those which modify the actual projection –
-matrices which are affected by changes 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in the view frustum (the six planes
-near, far, top, bottom, left, and right). The **viewmatrix** affects the
-positioning 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of the world within the camera’s view. <br />
+matrices which are affected by changes in the view frustum (the six planes near, far, top, bottom, left, and right). The **viewmatrix** affects the
+positioning of the world within the camera’s view. <br />
 
 ● InCamtransCamera::orientLook,update the eye, look, and up variables with the new
 ones. Then recalculate **u** , **v** , and **w** based on those new values. Then you’ll need to call
