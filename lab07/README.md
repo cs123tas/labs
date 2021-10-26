@@ -36,7 +36,7 @@ and viewed from any position.
 
 
 <p>
-    <img src="/img/0001.png"/>
+    <img src="/lab07/img/0001.png"/>
 </p>
 
 ## Getting Started
