@@ -1,6 +1,6 @@
-# Lab 6 - Camtrans
+# Lab 7 - Camtrans
 
-![intro](/lab07/img/0000.png)
+![](/lab07/img/0000.png)
 
 ## Prologue
 
@@ -34,7 +34,7 @@ adjustments that one could perform on a camera. Once that has been completed, yo
 possess all the tools needed to handle displaying three-dimensional objects oriented in any way
 and viewed from any position.
 
-![img1](/img/0001.png)
+![](/img/0001.png)
 
 ## Getting Started
 
