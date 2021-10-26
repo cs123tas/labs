@@ -1,8 +1,6 @@
 # Lab 6 - Camtrans
 
-<img src="photos/Capture1.png"
-     style="width:600px;height:400px;"
-     />
+![](img/Capture1.png)
 
 ## Prologue
 
@@ -36,9 +34,7 @@ adjustments that one could perform on a camera. Once that has been completed, yo
 possess all the tools needed to handle displaying three-dimensional objects oriented in any way
 and viewed from any position.
 
-<img src="photos/Capture2.png"
-     style="width:600px;height:400px;"
-     />
+![](img/Capture2.png)
 
 ## Getting Started
 
@@ -144,9 +140,7 @@ major matrix values */ ));
 Below is the view frustum, where **p = (px, py, pz)** is the eye position, **near** is the distance from
 p to the near plane, and **far** is the distance fromp to the farplane:
 
-<img src="photos/Capture3.png"
-     style="width:500px;height:300px;"
-     />
+![](img/Capture3.png)
 
 Here **w** and **h** are the width and height of the sectionof the frustum on the far plane, which is a
 distance **far** away from the eye position. The **aspectratio** is the ratio of width to height:
