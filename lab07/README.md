@@ -238,7 +238,6 @@ provided are the ones used by the stencil code.</b><br />
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ For example, the projection matrix is composed of the scale and perspective transform, so this method should call updateScaleMatrix() and updatePerspectiveMatrix().<br />
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ Check out the algo to figure out what matrices should be updated when updateViewMatrix()is called.<br />
 
 
 **Task 3 :**<br />
@@ -257,8 +256,6 @@ updateProjectionMatrix(). <br />
 ● Now it’s time to fill in getProjectionMatrix() and getViewMatrix(). <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ How would you calculate the projection and view matrices from our matrix
 member variables? <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;■ **Remember from the algo** that there were four matrices which formed
-the full camera matrix? That final camera matrix is just the product of the projection and view matrices. But which matrices belongs to which? <br />
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;■ **Projection matrices** are those which modify the actual projection –
 matrices which are affected by changes in the view frustum (the six planes near, far, top, bottom, left, and right). The **viewmatrix** affects the
@@ -278,8 +275,7 @@ updateViewMatrix(). <br />
 ● In CamtransCamera::rotateU, CamtransCamera::rotateV, and
 CamtransCamera::rotateW, rotate around the respective vector by a degree value and
 then update the view matrix. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ (Hint: Look at the algos section, and **remember to convert degrees to
-radians** .) <br />
+
 
 ● In CamtransCamera::setClipset the **near** and **far planes,** and call
 updateProjectionMatrix(). <br />
