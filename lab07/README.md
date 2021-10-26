@@ -1,6 +1,6 @@
 # Lab 7 - Camtrans
 
-![](/lab07/img/0000.png)
+![](/lab07/img/0000.PNG)
 
 ## Prologue
 
@@ -36,7 +36,7 @@ and viewed from any position.
 
 
 <p>
-    <img src="/lab07/img/0001.png"/>
+    <img src="/lab07/img/0001.PNG"/>
 </p>
 
 ## Getting Started
@@ -143,7 +143,7 @@ major matrix values */ ));
 Below is the view frustum, where **p = (px, py, pz)** is the eye position, **near** is the distance from
 p to the near plane, and **far** is the distance fromp to the farplane:
 
-![](/lab07/img/0002.png)
+![](/lab07/img/0002.PNG)
 
 Here **w** and **h** are the width and height of the sectionof the frustum on the far plane, which is a
 distance **far** away from the eye position. The **aspectratio** is the ratio of width to height:
