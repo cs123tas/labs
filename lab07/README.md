@@ -34,7 +34,10 @@ adjustments that one could perform on a camera. Once that has been completed, yo
 possess all the tools needed to handle displaying three-dimensional objects oriented in any way
 and viewed from any position.
 
-![](/img/0001.png)
+
+<p>
+    <img src="/img/0001.png"/>
+</p>
 
 ## Getting Started
 
