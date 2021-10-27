@@ -183,8 +183,8 @@ Make your scene act like the demo as shown below! Here’s what the demo does:
   *   We’ve made a member variable m\_angle that is incremented by 1 degree 60 times every second
   *   The x and z values of the eye should be adjusted according to the equations below:
 
-    *   x \= 6 \* cos(m\_angle)
-    *   y \= 6 \* sin(m\_angle)
+    *   x = 6 * cos(m_angle)
+    *   z = 6 * sin(m_angle)
 
 ![](images/image1.gif)
 
