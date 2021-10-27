@@ -90,7 +90,7 @@ are:
 ● glm::mat4x4- A 4x4 matrix.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ glm::mat4x4 mat = glm::mat4x4(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0,
 0, 0, 0, 1);<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ The default constructor forglm::mat4x4constructsan identity matrix.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ The default constructor for glm::mat4x4constructsan identity matrix.<br />
 
 ● glm::vec3 or glm::vec4- 3D and 4D vectors.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ glm::vec3 v = glm::vec3(1,0,0);<br />
