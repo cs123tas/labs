@@ -70,13 +70,13 @@ moves with it.
 
 
 ```
-● The “ <x, y or z>-axis ” buttons position the cameraso that it is located two units along
+● The “ <x, y or z>-axis ” buttons position the camera so that it is located two units along
       the <x, y or z> axis, pointing towards the origin.
-● The “ Axonometric ” button positions the camera suchthat it is located at the point (2,
+● The “ Axonometric ” button positions the camera such that it is located at the point (2,
       2, 2) and is pointing towards the origin.
-● The “ FOV ” slider adjusts the camera’s field of viewby setting the height angle.
-● The “ Near ” and “ Far ” sliders set the locations ofthe near and far clipping planes.
-● Finally, the “ Aspect ratio ” label reflects the aspectratio of the rendered image, which
+● The “ FOV ” slider adjusts the camera’s field of view by setting the height angle.
+● The “ Near ” and “ Far ” sliders set the locations of the near and far clipping planes.
+● Finally, the “ Aspect ratio ” label reflects the aspect ratio of the rendered image, which
       can be adjusted by resizing the window.
 ```
 ### OpenGL Mathematics (GLM)
@@ -90,19 +90,19 @@ are:
 ● glm::mat4x4- A 4x4 matrix.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ glm::mat4x4 mat = glm::mat4x4(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0,
 0, 0, 0, 1);<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ The default constructor for glm::mat4x4constructsan identity matrix.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ The default constructor for glm::mat4x4 constructs an identity matrix.<br />
 
 ● glm::vec3 or glm::vec4- 3D and 4D vectors.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ glm::vec3 v = glm::vec3(1,0,0);<br />
 
-● glm::transpose(glm::mat4x4 m)- Returns m^T, the transposeof matrix m.<br />
+● glm::transpose(glm::mat4x4 m)- Returns m^T, the transpose of matrix m.<br />
 
-● glm::normalize(glm::vec3 v)- Normalizes v and returnsthe resulting vector.<br />
+● glm::normalize(glm::vec3 v)- Normalizes v and returns the resulting vector.<br />
 
-● glm::dot(glm::vec3 v1, glm::vec3 v2) - Returns thedot product of two vectors
+● glm::dot(glm::vec3 v1, glm::vec3 v2) - Returns the dot product of two vectors
 (v1 and v2).<br />
 
-● glm::cross(glm::vec3 v1, glm::vec3 v2)- Returns thecross product of two
+● glm::cross(glm::vec3 v1, glm::vec3 v2)- Returns the cross product of two
 vectors (v1 and v2).<br />
 
 ● glm::radians(float degrees)- Converts from degrees to radians.<br />
@@ -120,7 +120,7 @@ glm::acos(...), glm::asin(...), glm::atan(...)<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ v.y // == 3<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ v.z // == 4<br />
 
-**However, youmay NOT use the following GLM functionsfor this lab:** <br />
+**However, you may NOT use the following GLM functions for this lab:** <br />
 ```
 ● glm::lookAt(...)
 ● glm::perspective(...)
@@ -130,7 +130,7 @@ glm::acos(...), glm::asin(...), glm::atan(...)<br />
 ```
 **IMPORTANT:** GLM and OpenGL use **column-major** matrixorder. The lectures describe
 matrices in row-major order. This means that, if you write out matrices in row-major order
-when constructing GLM matrices, you should transpose them withglm::transpose(...)
+when constructing GLM matrices, you should transpose them with glm::transpose(...)
 before storing them.
 
 For example: glm::mat4x4 columnMajorMatrix = glm::transpose(glm::mat4x4(/* row
@@ -141,14 +141,14 @@ major matrix values */ ));
 ### Aspect Ratio
 
 Below is the view frustum, where **p = (px, py, pz)** is the eye position, **near** is the distance from
-p to the near plane, and **far** is the distance fromp to the farplane:
+p to the near plane, and **far** is the distance from p to the farplane:
 
 <p>
     <img src="/lab07/img/0002.PNG" width="500"/>
 </p>
 
-Here **w** and **h** are the width and height of the sectionof the frustum on the far plane, which is a
-distance **far** away from the eye position. The **aspectratio** is the ratio of width to height:
+Here **w** and **h** are the width and height of the section of the frustum on the far plane, which is a
+distance **far** away from the eye position. The **aspect ratio** is the ratio of width to height:
 
 
 aspect = w<sub>near</sub>/h<sub>near</sub> = w/h
@@ -164,7 +164,7 @@ w/2 = far ∗ tan(θ<sub>w</sub>/2)
 h/2 = far ∗ tan(θ<sub>h</sub>/2)
 
 Note that this means the aspect ratio is NOT equal to θw/θh. The aspect ratio relates the
-tangents of the angles, not the angles themselves. The GUI will give you the height angle θ<sub>h</sub> in the setHeightAngle() method in _/camera/CamtransCamera.h_. You can get θ<sub>w</sub> by solving for it in the above equations, but you can also take a shortcut. Since the matrix from the lecture slides in Viewing III only uses tan( θw/2), you cansolve for tan( θ<sub>w</sub>/2) in terms of the aspect ratio and tan( θ<sub>h</sub>/2) and avoid having to calculate θ<sub>w</sub> at all.
+tangents of the angles, not the angles themselves. The GUI will give you the height angle θ<sub>h</sub> in the setHeightAngle() method in _/camera/CamtransCamera.h_. You can get θ<sub>w</sub> by solving for it in the above equations, but you can also take a shortcut. Since the matrix from the lecture slides in Viewing III only uses tan( θw/2), you can solve for tan( θ<sub>w</sub>/2) in terms of the aspect ratio and tan( θ<sub>h</sub>/2) and avoid having to calculate θ<sub>w</sub> at all.
 
 ### Convert Degrees to Radians
 
@@ -216,7 +216,7 @@ moved, you also re-adjust the look, up, and right vectors.
 ● Define the above five methods in the bottom of CamtransCamera.cpp. You will fill
 these in later.<br />
 
-● Fill in the get methods inCamtransCamera.cppto returnthe corresponding member
+● Fill in the get methods inCamtransCamera.cppto return the corresponding member
 variables.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ getScaleMatrix(), getPerspectiveMatrix()<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ getPosition()<br />
@@ -234,7 +234,7 @@ provided are the ones used by the stencil code.</b><br />
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ These methods should update their respective matrices with whatever current information we have saved in our member variables. We will call them when we have made changes to the member variables pertaining to the matrix. This way we don’t have to think too hard about what to change about the matrix itself; it will just refresh it entirely.<br />
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ There are no **projection** and **view matrix** member variablesin the stencil code, so in theupdateProjectionMatrix() and updatViewMatrix() methods, you will need to call the update methods of the matrices that they are composed of. <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ There are no **projection** and **view matrix** member variable sin the stencil code, so in theupdateProjectionMatrix() and updatViewMatrix() methods, you will need to call the update methods of the matrices that they are composed of. <br />
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ For example, the projection matrix is composed of the scale and perspective transform, so this method should call updateScaleMatrix() and updatePerspectiveMatrix().<br />
 
@@ -244,9 +244,9 @@ provided are the ones used by the stencil code.</b><br />
 ● InCamtransCamera::CamtransCamerain the CamtransCamera.cpp file, orient the
 camera to be like the demo. <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ The **near clip plane** is 1 and the far clip plane is 30. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ The **verticalview angle** is 60 degrees. <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ The **vertica view angle** is 60 degrees. <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ The screen **aspect ratio** is 1:1. <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ The **eye position** of the camera is at (2,2,2) in worldcoordinates. <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ The **eye position** of the camera is at (2,2,2) in world coordinates. <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;○ The camera is **looking** at the origin, and its **up vector** is (0,1,0) in world
 coordinates. <br />
 
@@ -332,5 +332,6 @@ show a TA how each matrix is calculated in your code: <br />
 
 Oh snap! Your camera can now display three-dimensional objects oriented in any way and
 viewed from any position! This lab will be used in future project assignments.
+
 
 
