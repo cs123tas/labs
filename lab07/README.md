@@ -314,7 +314,7 @@ use it,
     temp->byteCount().
 - Push everything to your repo. Clone it into your folder on department machines through
     either FastX3, ssh, or in person.
-- Then run cs1230_camtrans_test from the directory containing your CS123.pro file.
+- Then run ```python2 /course/cs1230/bin/cs1230_camtrans_test``` from the directory containing your CS123.pro file.
 
 ## End
 
