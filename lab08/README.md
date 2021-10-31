@@ -1,4 +1,4 @@
-#  Lab 7 - Framebuffer Objects
+#  Lab 8 - Framebuffer Objects
 
 
 # Prologue
@@ -56,10 +56,6 @@ You should now see a simple white sphere on the screen!
 Our next goal is to render this sphere to a texture. To do this we will use something called a **framebuffer object**, or **FBO**. We’ve seen the word “framebuffer” before, at the end of the OpenGL pipeline:
 
 
-
-<p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image1.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
 ![alt_text](images/image1.png "image_tooltip")
 
 
@@ -113,9 +109,6 @@ Next we have to **attach** the texture to the FBO. FBOs have a number of “atta
 
 Whenever a fragment shader outputs a single color, it will by default be written to the _first color attachment _of the currently bound FBO. The first color attachment point is called `GL_COLOR_ATTACHMENT0`; that’s the one we want to attach our texture to.
 
- 
-
-<p id="gdcalert2" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image2.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert3">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
 
 
 ![alt_text](images/image2.png "image_tooltip")
@@ -152,10 +145,6 @@ Whenever a fragment shader outputs a single color, it will by default be written
 The color texture is now attached to the FBO! One thing is missing though. When we bind our FBO, we want to tell OpenGL that it only needs to operate on the pixels within the attached textures. For example, if we have a fullscreen quad, we want to run our shader on every pixel, but if we are using our FBO for something else, we might want to operate on few pixels!
 
 In `FBO::bind()` we should also make sure OpenGL’s **viewport** has the same size as our texture. The viewport is the rectangular area of the screen (or pixel buffer) that OpenGL uses for rendering.
-
-
-
-<p id="gdcalert3" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image3.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert4">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
 
 
 ![alt_text](images/image3.png "image_tooltip")
@@ -203,9 +192,6 @@ In `initializeGL()`, initialize the `quadData`  for `m_quad` (a smart pointer to
 
 
 
-<p id="gdcalert4" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image4.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert5">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
 ![alt_text](images/image4.png "image_tooltip")
 
 
@@ -247,10 +233,6 @@ Now let’s texture map the quad by binding the FBO’s color texture.
         * This may say “`texture` was not declared in this scope” -- that’s fine!
 
 You should now see a sphere rendered back on the screen like in the image below.
-
-
-
-<p id="gdcalert5" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image5.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert6">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
 
 
 ![alt_text](images/image5.png "image_tooltip")
@@ -317,19 +299,11 @@ Your sphere should now be blurred horizontally!
 
  Our pipeline currently looks like this:
 
-
-
-<p id="gdcalert6" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image6.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert7">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
 ![alt_text](images/image6.png "image_tooltip")
 
 
 Now let’s blur it vertically. You’ll need to use a second FBO here, because you shouldn’t write to the same texture as you’re reading from. We could add a second color attachment to our FBO, but our second pass doesn’t care about the depth buffer, so we can make an FBO without one.  Here’s a diagram of the new pipeline:
 
-
-
-<p id="gdcalert7" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image7.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert8">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
 
 
 ![alt_text](images/image7.png "image_tooltip")
@@ -362,10 +336,6 @@ That’s it, you’ve implemented blurring on the GPU! If you’ve done it right
 Now let’s clean up the edge cases that we left out of the shaders. With no edge case handling, we are sometimes sampling the texture with UV-coordinates outside the range [0, 1]. What does OpenGL do in that case?
 
 By default, OpenGL wraps around to the other side of the texture. This isn’t what we want. To see this yourself, try translating the sphere and see what happens when it’s at the edge of the image.
-
-
-
-<p id="gdcalert8" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image8.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert9">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
 
 
 ![alt_text](images/image8.png "image_tooltip")
