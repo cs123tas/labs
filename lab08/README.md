@@ -168,7 +168,7 @@ Time to test out our FBO class! Let’s render our sphere into a texture. Up unt
 
 
 * In `GLWidget::resizeGL(...)`
-    * Initialize `m_blurFBO1` using `std::make_unique&lt;FBO>(...)`
+    * Initialize `m_blurFBO1` using `std::make_unique<FBO>(...)`
         * We want one color attachment.
         * For the second parameter, you can pass in `FBO::DEPTH_STENCIL_ATTACHMENT::NONE `(more on this later).
         * Use the dimensions passed into `resizeGL` as the parameters to create the FrameBufferObject.[^3] 
@@ -317,7 +317,7 @@ Now let’s blur it vertically. You’ll need to use a second FBO here, because 
 * In _verticalBlur.frag_
     * Fill in texelSize and add the weighted samples to fragColor by sampling with offset UV-coordinates in the y-direction.
 * In `resizeGL()`
-    * Initialize `m_blurFBO2` using `std::make_unique&lt;FBO>(...)`
+    * Initialize `m_blurFBO2` using `std::make_unique<FBO>(...)`
     * We don’t need a DepthBuffer, so pass in `FBO::DEPTH_STENCIL_ATTACHMENT::NONE`.
 * Instead of drawing our horizontally blurred texture to the screen, we want to render it into `m_blurFBO2`.
 * In `drawBlur()`
@@ -341,7 +341,7 @@ By default, OpenGL wraps around to the other side of the texture. This isn’t w
 ![alt_text](images/image8.png "image_tooltip")
 
 
-Instead, we can tell OpenGL to clamp UV-coordinates to the appropriate range. In other words, coordinates &lt;0 will be clamped to 0 and coordinates >1 will be clamped to 1. To do this we will adjust the **texture parameters** for texture wrapping.
+Instead, we can tell OpenGL to clamp UV-coordinates to the appropriate range. In other words, coordinates <0 will be clamped to 0 and coordinates >1 will be clamped to 1. To do this we will adjust the **texture parameters** for texture wrapping.
 
 
 ### Task 12:
