@@ -12,9 +12,9 @@ Maya! In this lab you will create and shade your own particle system through one
 2. Maya
 
 Note: Of the last three labs, which will be helpful for
-your final project, you will only need to complete two by November 30th
+your final project, you will only need to complete two by December 6th
 (but you can choose to do 3). You can get them checked off
-at any point between now and November 30th.
+at any point between now and December 6th.
 
 ## Intro
 
