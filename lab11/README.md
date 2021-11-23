@@ -120,3 +120,50 @@ Geometric attenuation is written in terms of the half-angle vector <img src="htt
 
 
 <img src="https://render.githubusercontent.com/render/math?math=G(\omega, \omega_r) = \mathrm{min}\{1, 2\frac{(n\cdot h)(n\cdot(-\omega))}{(-\omega)\cdot h}, 2\frac{(n\cdot h)(n\cdot\omega_r)}{\omega_r\cdot h}\}" justify="center" width="600px">
+
+# Real-time Implementation
+There’s a lot of support code, but you only need to worry about `metal.frag` and `glass.frag`.
+
+<img src="https://i.imgur.com/5COMFJC.png">
+Metal and glass shaders applied to a dragon model
+
+## Cube Environment Mapping
+Notice that both of these materials interact with the scene by reflecting and/or refracting it. For now, simulating this perfectly is too hard, so we'll approximate using a technique called environment mapping.
+
+Environment mapping encodes all data that can be reflected or refracted into a texture. For example, to simulate reflection, we simply figure out where in the scene the reflected data should come from and sample the texture (the environment map) correspondingly.
+
+Though computationally cheap, this technique only allows objects to reflect the environment: objects do not show reflections of each other. Later in this course you'll write a raytracer, which will be able to handle this kind of inter-object reflection.
+
+In this lab you will encode the environment in a cube map. Cube maps are a collection of six texture maps that form a cube, where each inside face of the cube is covered with a 2D texture:
+
+<img src="https://i.imgur.com/mJ1lufj.png">
+Example of an environment cube map, unrolled into a single image
+
+Each texture map is chosen so that the sides of the cube come together to form an entire scene. The object we're shading is surrounded by a skybox that uses the cube map textures. This way, the object being rendered appears to be inside the environment and the material shader can index into the environment cube map to determine what data to reflect and/or refract.
+
+Since the skybox and the shader will use the same cube map, it will appear as though the object is reflecting and refracting the scene. Remember to use the same cube map for the skybox and the shader! Otherwise, your object will be reflecting a different scene than the one it's in.
+
+The skybox has already been written for you, but the shaders that index into the cube map will be up to you.
+
+## Metal Shader
+
+To implement the metal shader in `metal.frag`, follow these high-level steps:
+1. Determine the diffuse and ambient terms as you would in a Phong shader.
+2. For the specular term, <img src="https://render.githubusercontent.com/render/math?math=k_s"> use the Cook-Torrance model.
+    - Clamp it above 0, so that negative values are ignored
+3. Compute the object color (without the reflection component) as `ambient` + `lambertTerm` * `diffuse` + <img src="https://render.githubusercontent.com/render/math?math=k_s"> * `specular`.
+4. Determine the reflection color.
+    - Calculate the reflected direction using `cameraToVertex`, the surface normal, and the GLSL `reflect` function.
+    - Convert the reflected direction to world space
+    - Sample the cube map. Qt might not recognize the texture() function—don’t worry, just compile and run the code, it should work fine.
+    - Don’t forget how we transform normals!
+5. Calculate the reflectance <img src="https://render.githubusercontent.com/render/math?math=F"> by Schlick's approximation. Remember to negate `cameraToVertex` to ensure that it points away from the vertex, not toward it.
+6. Get the final color by blending the reflection color and the object color
+    - Use the formula: `objectColor` (<img src="https://render.githubusercontent.com/render/math?math=1-F">) + `reflectionColor`(<img src="https://render.githubusercontent.com/render/math?math=F">)
+    - You might consider using GLSL's `mix` function for this
+
+Note: the default ambient color is `(0.7, 0.7, 0.7)`. This will make the metal sphere look really blown out! You can change the color in the panel on the right hand side of the GUI. This will make the sphere look more like what’s in the following picture.
+
+<img src="https://imgur.com/s7G2dUi.png">
+
+## Glass Shader
