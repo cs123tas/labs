@@ -28,12 +28,12 @@ When light hits an interface between two media (e.g. air and glass), it **refrac
 
 It turns out that for most materials that we care about in graphics, the index of refraction is defined as:
 
-<img src="https://render.githubusercontent.com/render/math?math=\eta = \sqrt{\varepsilon_r}" justify="center" width="66%">
+<img src="https://render.githubusercontent.com/render/math?math=\eta = \sqrt{\varepsilon_r}" justify="center" width="33%">
 
 ## Snell’s Law
 We can relate the indices of refraction of two materials to how light will refract at their interface using Snell’s Law.
 
-<img src="https://render.githubusercontent.com/render/math?math=\frac{\sin{\theta_1}}{\sin{\theta_2}} = \frac{\eta_2}{\eta_1}" justify="center" width="66%">
+<img src="https://render.githubusercontent.com/render/math?math=\frac{\sin{\theta_1}}{\sin{\theta_2}} = \frac{\eta_2}{\eta_1}" justify="center" width="30%">
 
 
 We can calculate the refraction of light at an interface if we know the indices of refraction of the two incident materials and the angle of the ray of light entering the interface.
