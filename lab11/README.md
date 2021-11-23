@@ -28,17 +28,17 @@ When light hits an interface between two media (e.g. air and glass), it **refrac
 
 It turns out that for most materials that we care about in graphics, the index of refraction is defined as:
 
-<img src="https://render.githubusercontent.com/render/math?math=\eta = \sqrt{\varepsilon_r}" justify="center" width="200px">
+<img src="https://render.githubusercontent.com/render/math?math=\eta = \sqrt{\varepsilon_r}" justify="center" width="66%">
 
 ## Snell’s Law
 We can relate the indices of refraction of two materials to how light will refract at their interface using Snell’s Law.
 
-<img src="https://render.githubusercontent.com/render/math?math=\frac{\sin{\theta_1}}{\sin{\theta_2}} = \frac{\eta_2}{\eta_1}" justify="center" width="200px">
+<img src="https://render.githubusercontent.com/render/math?math=\frac{\sin{\theta_1}}{\sin{\theta_2}} = \frac{\eta_2}{\eta_1}" justify="center" width="66%">
 
 
 We can calculate the refraction of light at an interface if we know the indices of refraction of the two incident materials and the angle of the ray of light entering the interface.
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Snells_law2.svg/800px-Snells_law2.svg.png" width="200px" justify="center">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Snells_law2.svg/800px-Snells_law2.svg.png" width="66%" justify="center">
 
 Now we can bend light! The amount it bends relates back to the dielectric constant of the medium it exits and the medium it enters. 
 
@@ -51,13 +51,13 @@ It depends on the _polarization_ of the light, which refers to whether the light
 
 We include the original Fresnel equations below - they’ll come in handy soon!
 
-<img src="https://render.githubusercontent.com/render/math?math=R_s = \left|\frac{\eta_1\cos\theta_i - \eta_2\cos\theta_t}{\eta_1\cos\theta_i %2B \eta_2\cos\theta_t}\right|^2" justify="center" width="200px">
+<img src="https://render.githubusercontent.com/render/math?math=R_s = \left|\frac{\eta_1\cos\theta_i - \eta_2\cos\theta_t}{\eta_1\cos\theta_i %2B \eta_2\cos\theta_t}\right|^2" justify="center" width="66%">
 
-<img src="https://render.githubusercontent.com/render/math?math=R_p = \left|\frac{\eta_2\cos\theta_i - \eta_1\cos\theta_t}{\eta_2\cos\theta_i %2B \eta_1\cos\theta_t}\right|^2" justify="center" width="200px">
+<img src="https://render.githubusercontent.com/render/math?math=R_p = \left|\frac{\eta_2\cos\theta_i - \eta_1\cos\theta_t}{\eta_2\cos\theta_i %2B \eta_1\cos\theta_t}\right|^2" justify="center" width="66%">
 
 In graphics, it’s common to assume that light is unpolarized, which means that we can calculate a single reflectance value for a given ray of light. Assuming light is unpolarized means that the overall percentage of light reflected rather than transmitted is 
 
-<img src="https://render.githubusercontent.com/render/math?math=R_F = (R_s %2b R_p) / 2" justify="center" width="200px">
+<img src="https://render.githubusercontent.com/render/math?math=R_F = (R_s %2b R_p) / 2" justify="center" width="66%">
 
 Notice that this value depends on the angle of incidence of the ray. As with the simulation of many physical phenomena in computer graphics, we’re going to leverage a good approximation of Fresnel reflectance to reduce the number of calculations we need to perform. 
 
@@ -65,13 +65,13 @@ Notice that this value depends on the angle of incidence of the ray. As with the
 Schlick (1994) introduced an approximation of Fresnel reflectance that is widely used in real-time rendering (and in our case, raytracing as well!)
 
 
-<img src="https://render.githubusercontent.com/render/math?math=R_F = R_0 %2b (1-R_0)(1-\cos\theta)^5" justify="center" width="200px">
+<img src="https://render.githubusercontent.com/render/math?math=R_F = R_0 %2b (1-R_0)(1-\cos\theta)^5" justify="center" width="66%">
 
 where 
 
-<img src="https://render.githubusercontent.com/render/math?math=R_0 = \left(\frac{\eta_1 - \eta_2}{\eta_1 %2b \eta_2}\right)^2" justify="center" width="200px">
+<img src="https://render.githubusercontent.com/render/math?math=R_0 = \left(\frac{\eta_1 - \eta_2}{\eta_1 %2b \eta_2}\right)^2" justify="center" width="66%">
 
-<img src="https://render.githubusercontent.com/render/math?math=\cos \theta = n \cdot (-\omega)" justify="center" width="200px">
+<img src="https://render.githubusercontent.com/render/math?math=\cos \theta = n \cdot (-\omega)" justify="center" width="66%">
 
 for <img src="https://render.githubusercontent.com/render/math?math=n"> the surface normal and <img src="https://render.githubusercontent.com/render/math?math=\omega">  the vector from the light source to the surface.
 
@@ -100,7 +100,7 @@ All that remains is to calculate the specular illumination.
 
 We first give the full Cook-Torrance formulation for specular illumination: 
 
-<img src="https://render.githubusercontent.com/render/math?math=R_s(\omega, \omega_r) = \frac{F(\omega)}{\pi}\cdot\frac{DG}{\pi(n\cdot(-\omega))(n\cdot\omega_r)}" justify="center" width="200px">
+<img src="https://render.githubusercontent.com/render/math?math=R_s(\omega, \omega_r) = \frac{F(\omega)}{\pi}\cdot\frac{DG}{\pi(n\cdot(-\omega))(n\cdot\omega_r)}" justify="center" width="66%">
 
 - <img src="https://render.githubusercontent.com/render/math?math=F"> represents the Fresnel reflectance function we defined earlier.
 - <img src="https://render.githubusercontent.com/render/math?math=D"> represents the slope distribution function, which describes the fraction of microfacets that are oriented in each direction
