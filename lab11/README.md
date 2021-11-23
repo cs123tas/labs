@@ -22,10 +22,9 @@ Here are the dielectric constants of a few common materials:
 But why do we care about how insulating a particular material is in computer graphics?
 
 When light hits an interface between two media (e.g. air and glass), it **refracts** based on the **index of refraction** of the two media. And how do we figure out the index of refraction (denoted <img src="https://render.githubusercontent.com/render/math?math=\eta">)?
-<div justify="center">
 
-        Refraction at air-glass and glass-air interfaces
-</div>
+### Refraction at air-glass and glass-air interfaces
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Refraction_photo.png">
 
 It turns out that for most materials that we care about in graphics, the index of refraction is defined as:
 
@@ -52,9 +51,9 @@ It depends on the _polarization_ of the light, which refers to whether the light
 
 We include the original Fresnel equations below - they’ll come in handy soon!
 
-<img src="https://render.githubusercontent.com/render/math?math=R_s = \left|\frac{\eta_1\cos\theta_i - \eta_2\cos\theta_t}{\eta_1\cos\theta_i %2B \eta_2\cos\theta_t}\right|" justify="center" width="200px">
+<img src="https://render.githubusercontent.com/render/math?math=R_s = \left|\frac{\eta_1\cos\theta_i - \eta_2\cos\theta_t}{\eta_1\cos\theta_i %2B \eta_2\cos\theta_t}\right|^2" justify="center" width="200px">
 
-<img src="https://render.githubusercontent.com/render/math?math=R_p = \left|\frac{\eta_2\cos\theta_i - \eta_1\cos\theta_t}{\eta_2\cos\theta_i %2B \eta_1\cos\theta_t}\right|" justify="center" width="200px">
+<img src="https://render.githubusercontent.com/render/math?math=R_p = \left|\frac{\eta_2\cos\theta_i - \eta_1\cos\theta_t}{\eta_2\cos\theta_i %2B \eta_1\cos\theta_t}\right|^2" justify="center" width="200px">
 
 In graphics, it’s common to assume that light is unpolarized, which means that we can calculate a single reflectance value for a given ray of light. Assuming light is unpolarized means that the overall percentage of light reflected rather than transmitted is 
 
@@ -121,5 +120,3 @@ Geometric attenuation is written in terms of the half-angle vector <img src="htt
 
 
 <img src="https://render.githubusercontent.com/render/math?math=G(\omega, \omega_r) = \mathrm{min}\{1, 2\frac{(n\cdot h)(n\cdot(-\omega))}{(-\omega)\cdot h}, 2\frac{(n\cdot h)(n\cdot\omega_r)}{\omega_r\cdot h}\}" justify="center" width="600px">
-
-You now have all the ingredients to write Cook-Torrance illumination! We can simulate rough metallic surfaces :) 
