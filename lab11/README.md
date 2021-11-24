@@ -1,6 +1,6 @@
 # Lab 11 - Dielectric Materials
 
-In this lab, we’ll cover how we simulate a special type of material called a dielectric in either real-time rendering or raytracing (you’ll choose one to implement!)
+In this lab, we’ll cover how we simulate a special type of material called a dielectric in real-time rendering.
 
 We’ll also cover how to simulate metallic surfaces more realistically. By the end of the lab, you should be able to create interesting new surface types that may come in handy for the final project.
 
@@ -62,7 +62,7 @@ In graphics, it’s common to assume that light is unpolarized, which means that
 Notice that this value depends on the angle of incidence of the ray. As with the simulation of many physical phenomena in computer graphics, we’re going to leverage a good approximation of Fresnel reflectance to reduce the number of calculations we need to perform. 
 
 ## Schlick’s Approximation
-Schlick (1994) introduced an approximation of Fresnel reflectance that is widely used in real-time rendering (and in our case, raytracing as well!)
+Schlick (1994) introduced an approximation of Fresnel reflectance that is widely used in real-time rendering.
 
 
 <img src="https://render.githubusercontent.com/render/math?math=R_F = R_0 %2b (1-R_0)(1-\cos\theta)^5" justify="center" width="66%">
@@ -80,7 +80,7 @@ Because <img src="https://render.githubusercontent.com/render/math?math=R_0"> do
 
 We can now calculate both the percentage of light reflected off of a surface and the direction that light will travel when transmitted through the surface. This is everything we need to know to simulate a glassy surface! Almost :) 
 
-One last important note: we weren’t entirely honest earlier when we said there’s a single index of refraction for a material. The index of refraction varies based on the wavelength of the light incident to the surface. **This will only be relevant in the real-time implementation option. For the raytraced implementation, we will assume the index of refraction is independent of the wavelength of light.**
+One last important note: we weren’t entirely honest earlier when we said there’s a single index of refraction for a material. The index of refraction varies based on the wavelength of the light incident to the surface.
 
 ## Simulating metal
 We’ve already seen how to simulate smooth, plasticky surfaces using the Phong model, but what if we want to simulate shiny surfaces that aren’t so smooth? 
@@ -132,7 +132,7 @@ Notice that both of these materials interact with the scene by reflecting and/or
 
 Environment mapping encodes all data that can be reflected or refracted into a texture. For example, to simulate reflection, we simply figure out where in the scene the reflected data should come from and sample the texture (the environment map) correspondingly.
 
-Though computationally cheap, this technique only allows objects to reflect the environment: objects do not show reflections of each other. Later in this course you'll write a raytracer, which will be able to handle this kind of inter-object reflection.
+Though computationally cheap, this technique only allows objects to reflect the environment: objects do not show reflections of each other. **This technique can be extended to raytracing by simply recursively tracing the refracted ray to obtain its lighting contribution!**
 
 In this lab you will encode the environment in a cube map. Cube maps are a collection of six texture maps that form a cube, where each inside face of the cube is covered with a 2D texture:
 
@@ -167,3 +167,61 @@ Note: the default ambient color is `(0.7, 0.7, 0.7)`. This will make the metal s
 <img src="https://imgur.com/s7G2dUi.png">
 
 ## Glass Shader
+
+Our strategy for refraction will be similar to reflection: using the GLSL `refract` function, compute the direction of the incident vector that refracts in the direction of the eye vector, and then sample the cube map to simulate the incoming light.
+
+The following refraction shader samples a refracted ray from the surrounding cube environment map:
+
+```glsl
+// Fragment shader
+uniform samplerCube envMap;      
+varying vec3 normal; 
+varying vec3 vertex;
+float eta = .77; // ratio of IORs (n2/n1 in Snell's law)
+void main() {
+    vec3 n = normalize(normal);     
+    vec3 e = normalize(vertex);
+    vec3 t = gl_ModelViewMatrixInverse * vec4(refract(e, n, eta), 0.0);
+    gl_FragColor = vec4(texture(envMap, t).rgb, 1.0);
+}
+```
+
+However, this is not very realistic. Recall the Fresnel equations described above. When light hits an interface between two media, some is reflected and some is refracted. Furthermore, different wavelengths of light get refracted different amounts.
+
+
+Open `glass.vert` and `glass.frag`. The vertex shader is already complete, so you just need to fill in the fragment shader. You will need Schlick's approximation to determine how much light is reflected and how much is refracted. The ratio of reflected to refracted light should be the Fresnel term, like in the metal shader.
+
+ Then, we need to refract light by different amounts for each color channel (R, G, and B)—each wavelength of light interacts with the material slightly differently. To do this, change your shader to calculate three refraction vectors (one for each color channel), each of which is refracted by a slightly different amount (use the values in the `uniform vec3 eta` declared for you in the stencil code).
+
+ To summarize, here are the high-level steps which should be performed by `glass.frag`:
+1. Sample the cube map to determine the reflection color.
+2. For each of the R, G, and B channels, determine the direction from which refracted light originated.
+    - For example use `refract(cameraToVertex, normal, eta.r)` to get the refracted direction for `R`
+3. Use these direction vectors to respectively sample the `R`, `G`, and `B` channels in the environment map.
+    - Don’t forget to convert the vectors to world space first
+4. Calculate the reflectance `F` by Schlick's approximation
+5. Get the final color by blending the refraction color and the reflection color
+    - Use the formula `refractionColor(1 - F) + reflectionColor(F)`
+    - You might consider using GLSL's `mix` function for this
+
+Try changing around the `r0` value to see the mix of reflectance and refraction change. Also try messing around with the eta values to see some fun color-dependent refraction effects! The final product should look like this:
+
+<img src="https://i.imgur.com/krasMGm.png">
+
+## Checkoff
+
+Once you see both the glass and metal shaders working, ask a TA to get checked off for lab. Now you have the basis to implement shaders for other reflective/refractive materials, and you can reuse these shaders in the final project, too!
+
+Be prepared to answer one or more of the following:
+- What is the purpose of Schlick's approximation? What are the coefficients we approximate with it?
+- What is environment mapping and how do we use it in our material shaders?
+- How does the Cook-Torrance model differ from the Phong model?
+- What is the difference in the implementation of the metal and glass shaders to allow the object to look like it has different material properties?
+
+
+## Food for thought
+- Review the Phong reflection model: http://en.wikipedia.org/wiki/Phong_shading#Phong_reflection_model
+- More about the Blinn-Phong shading model; https://en.wikipedia.org/wiki/Blinn%E2%80%93Phong_shading_model
+- Learn more about the Fresnel equations: http://en.wikipedia.org/wiki/Fresnel_equations
+- Original Cook-Torrance Paper: http://inst.cs.berkeley.edu/~cs294-13/fa09/lectures/cookpaper.pdf
+- OpenGL FAQ: https://www.khronos.org/opengl/wiki/FAQ
