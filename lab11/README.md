@@ -73,7 +73,7 @@ where
 
 <img src="https://render.githubusercontent.com/render/math?math=\cos \theta = n \cdot (-\omega)" justify="center" width="66%">
 
-for <img src="https://render.githubusercontent.com/render/math?math=n"> the surface normal and <img src="https://render.githubusercontent.com/render/math?math=\omega">  the vector from the light source to the surface.
+for <img src="https://render.githubusercontent.com/render/math?math=n"> the surface normal and <img src="https://render.githubusercontent.com/render/math?math=\omega">  the vector from the eye point to the surface.
 
 Because <img src="https://render.githubusercontent.com/render/math?math=R_0"> doesn’t depend on the angle at which the light hits the surface, we can calculate it once per surface and store it.
 
@@ -100,26 +100,26 @@ All that remains is to calculate the specular illumination.
 
 We first give the full Cook-Torrance formulation for specular illumination: 
 
-<img src="https://render.githubusercontent.com/render/math?math=R_s(\omega, \omega_r) = \frac{F(\omega)}{\pi}\cdot\frac{DG}{\pi(n\cdot(-\omega))(n\cdot\omega_r)}" justify="center" width="66%">
+<img src="https://render.githubusercontent.com/render/math?math=R_s(\omega, \omega_l) = \frac{F(\omega)}{\pi}\cdot\frac{DG}{\pi(n\cdot(-\omega))(n\cdot\omega_l)}" justify="center" width="66%">
 
 - <img src="https://render.githubusercontent.com/render/math?math=F"> represents the Fresnel reflectance function we defined earlier.
 - <img src="https://render.githubusercontent.com/render/math?math=D"> represents the slope distribution function, which describes the fraction of microfacets that are oriented in each direction
 - <img src="https://render.githubusercontent.com/render/math?math=G">  represents the geometric attenuation factor, which accounts for masking and shadowing of facets
 - <img src="https://render.githubusercontent.com/render/math?math=\omega">  is the direction vector from the eye to the surface
-- <img src="https://render.githubusercontent.com/render/math?math=\omega_r"> is the mirror reflection direction vector
+- <img src="https://render.githubusercontent.com/render/math?math=\omega_l"> is the direction vector from the surface to the light
 
 There are many possible choices of slope distribution function. Cook and Torrance used the Beckmann variety:
 
 <img src="https://render.githubusercontent.com/render/math?math=D(\alpha) = \frac{1}{m^2\cos^4(\alpha)}e^{-\left[\frac{\tan\alpha}{m}\right]^2}" justify="center" width="300px">
 
-where <img src="https://render.githubusercontent.com/render/math?math=\alpha = \cos^{-1}(n\cdot(-\omega))"> 
+where <img src="https://render.githubusercontent.com/render/math?math=\alpha = \cos^{-1}(n\cdot h)"> where <img src="https://render.githubusercontent.com/render/math?math=h = (-\omega%2b\omega_l)/2">
 
 Adjusting <img src="https://render.githubusercontent.com/render/math?math=m"> approximates the roughness of the surface. Higher <img src="https://render.githubusercontent.com/render/math?math=m"> corresponds to a rougher surface. You may also read about the GGX distribution function, which was developed after the introduction of the Beckmann function and provides slightly more realistic specular reflections for certain surfaces.
 
-Geometric attenuation is written in terms of the half-angle vector <img src="https://render.githubusercontent.com/render/math?math=h = (-\omega%2b\omega_r)/2">
+Geometric attenuation is written in terms of the half-angle vector <img src="https://render.githubusercontent.com/render/math?math=h = (-\omega%2b\omega_l)/2">
 
 
-<img src="https://render.githubusercontent.com/render/math?math=G(\omega, \omega_r) = \mathrm{min}\{1, 2\frac{(n\cdot h)(n\cdot(-\omega))}{(-\omega)\cdot h}, 2\frac{(n\cdot h)(n\cdot\omega_r)}{\omega_r\cdot h}\}" justify="center" width="600px">
+<img src="https://render.githubusercontent.com/render/math?math=G(\omega, \omega_l) = \mathrm{min}\{1, 2\frac{(n\cdot h)(n\cdot(-\omega))}{(-\omega)\cdot h}, 2\frac{(n\cdot h)(n\cdot\omega_l)}{(-\omega) \cdot h}\}" justify="center" width="600px">
 
 # Real-time Implementation
 There’s a lot of support code, but you only need to worry about `metal.frag` and `glass.frag`.
