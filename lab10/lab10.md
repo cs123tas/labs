@@ -7,7 +7,7 @@ Up until this point, we haven't used the full potential of GPUs because most of 
 
 In this lab, we will learn a 3D-rendering technique that can be completely implemented on the GPU (except for passing uniform values from the CPU), called ray marching. We will also implement some cool effects that are easier to implement with ray marching than ray tracing.
 
-> Note: Of the last four labs, you will only need to complete three by December 6th (but you can choose to do 4). You can get them checked off at any point between now and December 6th.
+> Note: Of the last three labs, you will only need to complete two by December 6th (but you can choose to do 3). You can get them checked off at any point between now and December 6th.
 
 ## Intro
 First, how is ray marching is different from ray tracing? To render a primitive with **ray tracing**, we need a function that, given an object and input ray, tells you exactly where that ray hits the object. A scene is usually described by a set of triangle meshes or by a set of primitives (primitives that you have implicit functions for). Using some spatial acceleration structure, we can quickly solve for the exact intersections between the rays and the objects.
